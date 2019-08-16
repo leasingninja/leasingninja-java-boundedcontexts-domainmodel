@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LeasingNinja – Risk management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<h1>Risk management</h1>
+    <table>
+    <thead>
+        <tr>
+            <th> Contract </th>
+            <th> Credit rating </th>
+            <th> Vote result </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${books.empty}">
+        <td colspan="3"> No contracts </td>
+        </tr>
+        <tr th:each="contract : ${contracts}">
+            <td><span th:text="${contract.number}"> Contract </span></td>
+            <td><span th:text="${contract.creditRating}"> Credit rating </span></td>
+            <td><span th:text="${contract.voteResult}"> Vote result </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
