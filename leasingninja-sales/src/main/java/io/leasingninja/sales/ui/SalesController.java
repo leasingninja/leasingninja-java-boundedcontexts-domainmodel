@@ -91,7 +91,7 @@ public class SalesController {
 				Customer.of(lesseeString), 
 				Car.of(carString),
 				Amount.of(priceAmount, priceCurrency));
-		return "redirect:/contractView?contractNumber=" + contractNumberString;
+		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
 	}
 
 	@PostMapping("/sales/sign_contract")
@@ -99,7 +99,7 @@ public class SalesController {
 			@RequestParam(name="contractNumber") String contractNumberString,
 			Model model) {
 		this.signContract.with(ContractNumber.of(contractNumberString), SignDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth()));
-		return "redirect:/contractView?contractNumber=" + contractNumberString;
+		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
 	}
 
 }

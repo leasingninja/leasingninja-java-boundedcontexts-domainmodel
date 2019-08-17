@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Leasing contract</h1>
-    <form action="/fillout_contract" method="post">
+    <form action="/sales/fillout_contract" method="post">
 		<fieldset id="input" th:disabled="${editing_disabled}">
 		    <div>
 		    	<label for="contractNumber">Number:</label>
@@ -34,7 +34,7 @@
 			</div>
 			<div>
 		     	<button type="submit">Save</button>
-		     	<button type="submit" formaction="/sign_contract">Sign</button>
+		     	<button type="submit" formaction="/sales/sign_contract">Sign</button>
 			</div>
 		  </fieldset>
     </form>
