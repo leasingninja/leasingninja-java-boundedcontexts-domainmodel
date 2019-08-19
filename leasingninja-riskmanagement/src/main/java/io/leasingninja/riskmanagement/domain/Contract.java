@@ -41,7 +41,7 @@ public class Contract extends Entity<ContractNumber> {
 	}
 
 	public CreditRating rating() {
-		assert isRated();
+		assert isRated() : "Precondition violated: isRated()";
 		
 		return creditRating;
 	}
