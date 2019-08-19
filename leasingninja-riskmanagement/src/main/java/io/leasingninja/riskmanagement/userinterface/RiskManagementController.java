@@ -13,6 +13,9 @@ import io.leasingninja.riskmanagement.application.VoteContract;
 import io.leasingninja.riskmanagement.domain.ContractNumber;
 import io.leasingninja.riskmanagement.domain.VoteResult;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class RiskManagementController {
 	
@@ -31,7 +34,13 @@ public class RiskManagementController {
 	@GetMapping("/riskmanagement/contracts")
 	public String listContracts(Model model)
 	{
-		model.addAttribute("contracts", listContracts.all().stream().map(ContractModelMapper::modelFrom));
+		List<ContractModel> contractModels = this.listContracts.all().stream()
+				.map(ContractModelMapper::modelFrom)
+				.collect(Collectors.toUnmodifiableList());
+		System.out.println("Contract models: " + contractModels);
+		model.addAttribute(
+				"contracts",
+				contractModels);
 		return "contracts";
 	}
 	
@@ -75,7 +84,7 @@ public class RiskManagementController {
 		this.voteContract.vote(
 				ContractNumber.of(contractNumber), 
 				VoteResult.valueOf(voteResult));
-		return "redirect:/contract?number=" + contractNumber;
+		return "redirect:/riskmanagement/contract?number=" + contractNumber;
 	}
 
 }
