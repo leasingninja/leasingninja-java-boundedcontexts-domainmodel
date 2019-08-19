@@ -3,3 +3,6 @@ language: java
 cache:
   directories:
     - $HOME/.m2
+
+jdk:
+  - openjdk12
