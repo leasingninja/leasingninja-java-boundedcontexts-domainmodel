@@ -2,13 +2,17 @@ package io.leasingninja.riskmanagement.userinterface;
 
 import io.leasingninja.riskmanagement.domain.Contract;
 
+import java.util.Objects;
+
 public class ContractModelMapper {
 
-	public static ContractModel modelFrom(Contract contract) {
+	public static ContractModel modelFrom(Contract contract) { // TODO: static??
+		Objects.requireNonNull(contract);
+
 		return new ContractModel(
-				contract.identity().toString(),
-				contract.rating().toString(),
-				contract.votingResult().toString());
+				contract.identity().value(),
+				contract.isRated() ? contract.rating().toString() : "<not rated yet>",
+				contract.isVoted() ? contract.votingResult().toString() : "<not voted yet>");
 	}
 
 }
