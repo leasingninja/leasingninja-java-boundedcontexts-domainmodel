@@ -16,14 +16,14 @@ class ContractTest {
 	@Test
 	void givenANewContract_whenSign_thenContractIsSigned() {
 		// given
-		var vertrag = new Contract(ContractNumber.of("4711"), Customer.of("John Buyer"),
+		var contract = new Contract(ContractNumber.of("4711"), Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"), Amount.of(20_000, "EUR"));
 
 		// when
-		vertrag.sign(SignDate.of(2018, 12, 24));
+		contract.sign(SignDate.of(2018, 12, 24));
 
 		// then
-		assertThat(vertrag.isSigned()).isEqualTo(true);
+		assertThat(contract.isSigned()).isEqualTo(true);
 		// check that event ContractSigned is fired
 	}
 
@@ -32,7 +32,7 @@ class ContractTest {
 		// given
 
 		// when
-		Contract vertrag = Contract.restore(
+		Contract contract = Contract.restore(
 				ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
@@ -40,11 +40,11 @@ class ContractTest {
 				SignDate.of(2018, 04, 12));
 
 		// then
-		assertThat(vertrag.number()).isEqualTo(ContractNumber.of("4711"));
-		assertThat(vertrag.lessee()).isEqualTo(Customer.of("John Buyer"));
-		assertThat(vertrag.car()).isEqualTo(Car.of("Mercedes Benz C-Class"));
-		assertThat(vertrag.price()).isEqualTo(Amount.of(20_000, "EUR"));
-		assertThat(vertrag.isSigned()).isEqualTo(true);
+		assertThat(contract.number()).isEqualTo(ContractNumber.of("4711"));
+		assertThat(contract.lessee()).isEqualTo(Customer.of("John Buyer"));
+		assertThat(contract.car()).isEqualTo(Car.of("Mercedes Benz C-Class"));
+		assertThat(contract.price()).isEqualTo(Amount.of(20_000, "EUR"));
+		assertThat(contract.isSigned()).isEqualTo(true);
 		// check that event ContractSigned is fired
 	}
 
