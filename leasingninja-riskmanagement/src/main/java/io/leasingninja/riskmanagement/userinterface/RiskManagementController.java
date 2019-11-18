@@ -1,17 +1,17 @@
 package io.leasingninja.riskmanagement.userinterface;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import io.leasingninja.riskmanagement.application.CheckCreditRating;
 import io.leasingninja.riskmanagement.application.ListContracts;
 import io.leasingninja.riskmanagement.application.ReadContract;
 import io.leasingninja.riskmanagement.application.VoteContract;
 import io.leasingninja.riskmanagement.domain.ContractNumber;
+import io.leasingninja.riskmanagement.domain.CreditRating;
 import io.leasingninja.riskmanagement.domain.VoteResult;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,26 +65,44 @@ public class RiskManagementController {
 		return "contract";
 	}
 
-	@PostMapping("/riskmanagement/vote")
-	public String voteContract(
-			@RequestParam(name="contract_number") String contractNumber,
-			@RequestParam(name="vote_result") String voteResult,
-			Model model) {
+    @PostMapping("/riskmanagement/rating")
+    public String checkCreditRating(
+            @RequestParam(name="contract_number") String contractNumber,
+            @RequestParam(name="creditRating") String creditRatingString,
+            Model model) {
+	    try {
+            CreditRating.valueOf(creditRatingString);
+        } catch(IllegalArgumentException exception) {
+            // TODO:
+            return "Invalid credit rating: " + creditRatingString;
+        }
+
+        this.checkCreditRating.checkCreditRating(
+                ContractNumber.of(contractNumber),
+                CreditRating.valueOf(creditRatingString));
+        return "redirect:/riskmanagement/contract?number=" + contractNumber;
+    }
+
+    @PostMapping("/riskmanagement/vote")
+    public String voteContract(
+            @RequestParam(name="contract_number") String contractNumber,
+            @RequestParam(name="vote_result") String voteResult,
+            Model model) {
 //		if (!Contractnumber.isValid(contractNumber)) {
-//			// TODO: 
+//			// TODO:
 //			return "Invalid Contract Number: " + contractNumber;
 //		}
-		try {
-			VoteResult.valueOf(voteResult);
-		} catch(IllegalArgumentException e) {
-			// TODO: 
-			return "Invalid vote result: " + voteResult;
-		}
-		
-		this.voteContract.vote(
-				ContractNumber.of(contractNumber), 
-				VoteResult.valueOf(voteResult));
-		return "redirect:/riskmanagement/contract?number=" + contractNumber;
-	}
+        try {
+            VoteResult.valueOf(voteResult);
+        } catch(IllegalArgumentException e) {
+            // TODO:
+            return "Invalid vote result: " + voteResult;
+        }
+
+        this.voteContract.vote(
+                ContractNumber.of(contractNumber),
+                VoteResult.valueOf(voteResult));
+        return "redirect:/riskmanagement/contract?number=" + contractNumber;
+    }
 
 }
