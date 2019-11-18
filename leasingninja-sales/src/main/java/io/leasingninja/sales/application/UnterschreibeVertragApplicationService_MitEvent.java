@@ -1,15 +1,9 @@
 package io.leasingninja.sales.application;
 
-import java.util.Observable;
-import java.util.concurrent.Flow;
 //import java.beans.
 import java.util.concurrent.SubmissionPublisher;
 
-import io.leasingninja.sales.domain.Amount;
-import io.leasingninja.sales.domain.Car;
-import io.leasingninja.sales.domain.Contract;
-import io.leasingninja.sales.domain.ContractNumber;
-import io.leasingninja.sales.domain.Customer;
+import io.leasingninja.sales.domain.*;
 
 //public class UnterschreibeVertragApplicationService extends Observable implements Flow.Publisher<VertragUnterschrieben>{
 public class UnterschreibeVertragApplicationService_MitEvent extends SubmissionPublisher<ContractSigned>{
