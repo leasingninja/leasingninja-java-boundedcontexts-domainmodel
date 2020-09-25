@@ -9,7 +9,7 @@ import io.leasingninja.sales.application.SignContract;
 import io.leasingninja.sales.application.ViewContract;
 import io.leasingninja.sales.domain.Contracts;
 import io.leasingninja.sales.infrastructure.ContractDatabaseEntityRepository;
-import io.leasingninja.sales.infrastructure.ContractRepositoryJpaImpl;
+import io.leasingninja.sales.infrastructure.ContractsJpaImpl;
 
 @Configuration
 public class SalesConfig {
@@ -19,7 +19,7 @@ public class SalesConfig {
 	// Domain layer
 	@Bean
 	public Contracts salesContractRepository(ContractDatabaseEntityRepository repo) {
-		return new ContractRepositoryJpaImpl(repo);
+		return new ContractsJpaImpl(repo);
 	}
 	
 	// Application layer
