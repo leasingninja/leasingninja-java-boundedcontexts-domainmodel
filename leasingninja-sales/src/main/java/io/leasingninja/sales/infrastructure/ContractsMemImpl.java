@@ -7,11 +7,11 @@ import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Contracts;
 
-public class ContractRepositoryMemImpl implements Contracts {
+public class ContractsMemImpl implements Contracts {
 	
 	private final Map<ContractNumber, Contract> repo;
 	
-	public ContractRepositoryMemImpl() {
+	public ContractsMemImpl() {
 		repo = new HashMap<>();
 	}
 
@@ -22,7 +22,6 @@ public class ContractRepositoryMemImpl implements Contracts {
 
 	@Override
 	public Contract with(ContractNumber number) {
-		System.out.println("with:" + number);
 		return repo.get(number);
 	}
 

@@ -6,7 +6,7 @@ import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Contracts;
 
-public class ContractRepositoryJsonImpl implements Contracts  {
+public class ContractsJsonImpl implements Contracts  {
 
 	@Override
 	public void save(Contract contract) {

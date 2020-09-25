@@ -9,16 +9,15 @@ import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Customer;
-import io.leasingninja.sales.infrastructure.ContractRepositoryMemImpl;
 
-class ContractRepositoryMemImplTest {
+class ContractsMemImplTest {
 
-	private ContractRepositoryMemImpl repoUnderTest;
+	private ContractsMemImpl repoUnderTest;
 	
 	@Test
 	void test() {
 		// given
-		repoUnderTest = new ContractRepositoryMemImpl();
+		repoUnderTest = new ContractsMemImpl();
 		
 		// when
 		repoUnderTest.save(new Contract(
