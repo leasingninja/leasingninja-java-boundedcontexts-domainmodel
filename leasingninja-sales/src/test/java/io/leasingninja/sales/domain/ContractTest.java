@@ -13,22 +13,42 @@ import io.leasingninja.sales.domain.SignDate;
 
 class ContractTest {
 
+	/*
+	@Test
+	void givenAFilledOutContract_whenCalculate_thenInstallmentIsX() {
+		// given
+		var contract = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Tesla Model 3"),
+				Amount.of(40_000, "EUR"));
+
+		// when
+		contract.calculateFor(Term.of(48), Interest.of(3.7));
+
+		// then
+		assertThat(contract.installment()).isEqualTo(Amount.of(897.80, "EUR"));
+	}
+*/
+
 	@Test
 	void givenANewContract_whenSign_thenContractIsSigned() {
 		// given
-		var contract = new Contract(ContractNumber.of("4711"), Customer.of("John Buyer"),
-				Car.of("Mercedes Benz C-Class"), Amount.of(20_000, "EUR"));
+		var contract = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Mercedes Benz C-Class"),
+				Amount.of(20_000, "EUR"));
 
 		// when
 		contract.sign(SignDate.of(2018, 12, 24));
 
 		// then
 		assertThat(contract.isSigned()).isEqualTo(true);
+		assertThat(contract.signDate()).isEqualTo(SignDate.of(2018, 12, 24));
 		// check that event ContractSigned is fired
 	}
 
 	@Test
-	void given_whenRestore_thenVertragContainsRestoredData() {
+	void given_whenRestore_thenContractContainsRestoredData() {
 		// given
 
 		// when
