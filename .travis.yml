@@ -5,4 +5,4 @@ cache:
     - $HOME/.m2
 
 jdk:
-  - openjdk12
+  - openjdk14
