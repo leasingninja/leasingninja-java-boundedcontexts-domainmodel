@@ -17,8 +17,8 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("<not rated yet");
-        assertThat(model.voteResult).isEqualTo("<not voted yet");
+        assertThat(model.creditRating).isEqualTo("<not rated yet>");
+        assertThat(model.voteResult).isEqualTo("<not voted yet>");
     }
 
     @Test
@@ -32,8 +32,8 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("Good");
-        assertThat(model.voteResult).isEqualTo("<not voted yet");
+        assertThat(model.creditRating).isEqualTo("GOOD");
+        assertThat(model.voteResult).isEqualTo("<not voted yet>");
     }
 
     @Test
@@ -48,8 +48,8 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("Good");
-        assertThat(model.voteResult).isEqualTo("Accepted");
+        assertThat(model.creditRating).isEqualTo("GOOD");
+        assertThat(model.voteResult).isEqualTo("ACCEPTED");
     }
 
 }
