@@ -27,7 +27,7 @@ class ViewContractTest {
 	private ViewContract viewContractUnderTest;
 
 	@Test
-	void testLiesVertrag() {
+	void givenAContract_WhenViewContract_ThenContractIsReturned() {
 		// Given
 		given(contractsMock.with(ContractNumber.of("4711"))).willReturn(
 				new Contract(
