@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import io.leasingninja.sales.domain.SignDate;
 
-class UnterschriftsdatumTest {
+class SignDateTest {
 
 	@Test
 	void test() {
