@@ -42,7 +42,7 @@ module io.leasingninja.sales {
     /* JSON implementation */
 //    requires com.fasterxml.jackson.databind;
 //    requires transitive com.fasterxml.jackson.core;
-    requires gson;
+    requires com.google.gson;
 }
 
 
