@@ -16,7 +16,7 @@ public class SalesConfig {
 
 	// Arbeitshypothese: DI hierüber, höherwertige Spring-Technologien (Repo-Magic, Web-MVC) über Stereotypen
 	
-	// Domain layer
+	// Infrastructure layer
 	@Bean
 	public Contracts salesContractRepository(ContractDatabaseEntityRepository repo) {
 		return new ContractsJpaImpl(repo);
