@@ -18,6 +18,9 @@ public class SignContract {
 	}
 	
 	public void with(ContractNumber number, SignDate signDate) {
+		assert number != null;
+		assert signDate != null;
+
 		var contract = this.contracts.with(number);
 		
 		contract.sign(signDate);
