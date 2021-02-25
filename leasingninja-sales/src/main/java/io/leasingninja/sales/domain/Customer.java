@@ -1,6 +1,6 @@
 package io.leasingninja.sales.domain;
 
-import io.hschwentner.dddbits.annotation.ValueObject;
+import org.jmolecules.ddd.annotation.ValueObject;
 import io.hschwentner.dddbits.basetype.TinyStringType;
 
 @ValueObject

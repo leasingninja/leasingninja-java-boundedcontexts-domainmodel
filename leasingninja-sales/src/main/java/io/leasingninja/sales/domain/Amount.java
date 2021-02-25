@@ -1,6 +1,7 @@
 package io.leasingninja.sales.domain;
 
-import io.hschwentner.dddbits.annotation.ValueObject;
+
+import org.jmolecules.ddd.annotation.ValueObject;
 
 @ValueObject
 public class Amount {

@@ -2,19 +2,18 @@ package io.leasingninja.sales.domain;
 
 import java.util.Objects;
 
-import io.hschwentner.dddbits.annotation.DomainEntity;
-import io.hschwentner.dddbits.annotation.Factory;
-import io.hschwentner.dddbits.basetype.Entity;
+import org.jmolecules.ddd.annotation.Entity;
+import org.jmolecules.ddd.annotation.Factory;
 
-@DomainEntity
-public class Contract extends Entity<ContractNumber> {
+@Entity
+public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber> {
 
 	private final Customer lessee;
 	private final Car car;
 	private final Amount price;
 	private SignDate signDate;
 
-	@Factory
+	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
 	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, SignDate signDate) {
 		assert number != null;
 		assert lessee != null;

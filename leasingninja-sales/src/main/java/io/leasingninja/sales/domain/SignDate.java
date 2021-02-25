@@ -2,7 +2,7 @@ package io.leasingninja.sales.domain;
 
 import java.time.LocalDate;
 
-import io.hschwentner.dddbits.annotation.ValueObject;
+import org.jmolecules.ddd.annotation.ValueObject;
 import io.hschwentner.dddbits.basetype.TinyDateType;
 
 @ValueObject

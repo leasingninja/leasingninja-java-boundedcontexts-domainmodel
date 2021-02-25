@@ -1,8 +1,8 @@
 package io.leasingninja.sales.domain;
 
-import io.hschwentner.dddbits.annotation.DomainRepository;
+import org.jmolecules.ddd.annotation.Repository;
 
-@DomainRepository
+@Repository
 public interface Contracts {
 
 	Contract with(ContractNumber number);
