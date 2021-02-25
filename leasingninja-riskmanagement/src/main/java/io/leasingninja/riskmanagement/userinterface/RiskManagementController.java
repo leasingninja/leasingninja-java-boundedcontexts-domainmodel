@@ -68,7 +68,7 @@ public class RiskManagementController {
     @PostMapping("/riskmanagement/rating")
     public String checkCreditRating(
             @RequestParam(name="contract_number") String contractNumber,
-            @RequestParam(name="creditRating") String creditRatingString,
+            @RequestParam(name="credit_rating") String creditRatingString,
             Model model) {
 	    try {
             CreditRating.valueOf(creditRatingString);
@@ -102,7 +102,7 @@ public class RiskManagementController {
         this.voteContract.vote(
                 ContractNumber.of(contractNumber),
                 VoteResult.valueOf(voteResult));
-        return "redirect:/riskmanagement/contract?number=" + contractNumber;
+        return "redirect:/riskmanagement/vote?number=" + contractNumber;
     }
 
 }
