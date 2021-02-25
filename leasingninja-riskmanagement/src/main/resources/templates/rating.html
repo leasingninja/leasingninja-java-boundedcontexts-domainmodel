@@ -1,5 +1,10 @@
+
+## TODO: Bisher Kopie von Vote.html
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="editing_disabled" type="java.lang.Boolean"*/-->
+<!--/*@thymesVar id="contract" type="io.leasingninja.riskmanagement.userinterface.ContractModel"*/-->
 <head>
     <title>LeasingNinja – Risk management</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,7 +20,7 @@
 			</div>
 		    <div>
 		    	<label for="vote_result">Result:</label>
-		    	<select type="number" id="vote_result" name="vote_result" th:value="${contract.vote_result}">
+		    	<select type="number" id="vote_result" name="vote_result" th:value="${contract.voteResult}">
 				  <option>Accepted</option>
 				  <option>Accepted with obligations</option>
 				  <option>Rejected</option>
