@@ -98,6 +98,10 @@ public class SalesController {
 	public String signContract(
 			@RequestParam(name="contractNumber") String contractNumberString,
 			Model model) {
+//		CheckResult result = ContractNumber.checkValidity(contractNumberString);
+//		if(!result.valid) {
+//			return 400 result.errors;
+//		}
 		this.signContract.with(ContractNumber.of(contractNumberString), SignDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth()));
 		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
 	}
