@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h1>Risk management</h1>
-    <form action="/vote_contract" method="post">
+    <form action="/riskmanagement/vote_contract" method="POST">
 		<fieldset id="input" th:disabled="${editing_disabled}">
 		    <div>
 		    	<label for="contract_number">Number:</label>
@@ -20,7 +20,7 @@
 			</div>
 		    <div>
 		    	<label for="vote_result">Result:</label>
-		    	<select type="number" id="vote_result" name="vote_result" th:value="${contract.voteResult}">
+		    	<select type="text" id="vote_result" name="vote_result" th:value="${contract.voteResult}">
 				  <option>Accepted</option>
 				  <option>Accepted with obligations</option>
 				  <option>Rejected</option>

@@ -7,7 +7,7 @@ import java.util.Objects;
 public class ContractModelMapper {
 
 	public static ContractModel modelFrom(Contract contract) { // TODO: static??
-		Objects.requireNonNull(contract);
+			Objects.requireNonNull(contract);
 
 		return new ContractModel(
 				contract.identity().value(),

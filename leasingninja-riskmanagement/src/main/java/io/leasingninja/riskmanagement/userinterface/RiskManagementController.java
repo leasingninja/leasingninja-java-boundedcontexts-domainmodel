@@ -43,6 +43,8 @@ public class RiskManagementController {
 				contractModels);
 		return "contracts";
 	}
+
+
 	
 	@GetMapping("/riskmanagement/contract")
 	public String showContract(
@@ -62,25 +64,50 @@ public class RiskManagementController {
 		model.addAttribute("contract", vertragModel);
 		model.addAttribute("editing_disabled", contract.isVoted());
 
-		return "contract";
+		return "contracts";
 	}
 
-    @PostMapping("/riskmanagement/rating")
+
+	@GetMapping("/riskmanagement/rating")
+	public String showRatings(
+			@RequestParam(name="contract_number") String contract_number,
+			Model model) {
+
+		System.out.println(" --> /riskmanagement/rating called -> contract_number" + contract_number  );
+
+		var contract = this.readContract.readContract(ContractNumber.of(contract_number));
+
+		var vertragModel = ContractModelMapper.modelFrom(contract);
+		model.addAttribute("contract", vertragModel);
+
+
+		return "rating";
+	}
+
+    @PostMapping("/riskmanagement/vote_contract")
     public String checkCreditRating(
             @RequestParam(name="contract_number") String contractNumber,
-            @RequestParam(name="credit_rating") String creditRatingString,
+            @RequestParam(name="vote_result") String voteResult,
             Model model) {
 	    try {
-            CreditRating.valueOf(creditRatingString);
+			System.out.println(" ||| ----> contractNumber " + contractNumber + " voteResult " + voteResult );
+            //CreditRating.valueOf(voteResult);
         } catch(IllegalArgumentException exception) {
             // TODO:
-            return "Invalid credit rating: " + creditRatingString;
+            //return "Invalid credit rating: " + voteResult;
         }
 
-        this.checkCreditRating.checkCreditRating(
-                ContractNumber.of(contractNumber),
-                CreditRating.valueOf(creditRatingString));
-        return "redirect:/riskmanagement/contract?number=" + contractNumber;
+	    try {
+			System.out.println("**** CreditRating.valueOf(voteResult)  " + CreditRating.valueOf(voteResult)
+					+ "voteResult " + voteResult);
+			// TODO --> fix
+			this.checkCreditRating.checkCreditRating(
+					ContractNumber.of(contractNumber),
+					CreditRating.Accepted);
+		} catch (Exception ex) {
+			System.out.println("ex " + ex );
+		}
+        return "redirect:/riskmanagement/contracts?number=" + contractNumber;
     }
 
     @PostMapping("/riskmanagement/vote")
