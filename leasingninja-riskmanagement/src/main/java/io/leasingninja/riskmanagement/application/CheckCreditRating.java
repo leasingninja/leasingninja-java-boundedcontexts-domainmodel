@@ -24,12 +24,13 @@ public class CheckCreditRating {
 	public void checkCreditRating(ContractNumber contractnumber, CreditRating rating) {
 		requireNonNull(contractnumber);
 		requireNonNull(rating);
-
+		System.out.println("1- ContractNumber contractnumber : " + contractnumber + " CreditRating rating :" + rating);
 		var contract = this.contracts.findById(contractnumber);
-
+		System.out.println("2- ContractNumber contractnumber : " + contractnumber + " CreditRating rating :" + rating);
 		contract.checkCreditRating(rating);
-
+		System.out.println("3- ContractNumber contractnumber : " + contractnumber + " CreditRating rating :" + rating);
 		this.contracts.save(contract);
+		System.out.println("4- ContractNumber contractnumber : " + contractnumber + " CreditRating rating :" + rating);
 	}
 
 }
