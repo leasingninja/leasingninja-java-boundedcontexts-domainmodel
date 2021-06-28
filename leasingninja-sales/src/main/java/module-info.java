@@ -17,7 +17,7 @@ module io.leasingninja.sales {
 //    requires transitive logback.classic;
 	
 	// Domain Layer
-    requires jmolecules.ddd;
+    requires org.jmolecules.ddd;
     requires io.hschwentner.dddbits;
 	requires io.leasingninja.riskmanagement;
 	
