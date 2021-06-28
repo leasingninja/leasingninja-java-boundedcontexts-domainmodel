@@ -16,7 +16,7 @@
 	<properties>
 		<!-- Build -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>15</java.version>
+		<java.version>16</java.version>
 		<maven.compiler.version>3.8.1</maven.compiler.version>
 		<surefire.version>3.0.0-M5</surefire.version>
         <!--	<surefire.version>2.22.2</surefire.version> -->
@@ -33,7 +33,7 @@
 		<junit.platform.version>1.7.1</junit.platform.version>
 		<assertj.version>3.19.0</assertj.version>
 		<mockito.version>3.9.0</mockito.version>
-		<archunit.version>0.18.0</archunit.version>
+		<archunit.version>0.19.0</archunit.version>
 	</properties>
 
 	<modules>
@@ -164,7 +164,7 @@
 
 		<dependency>
 			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit</artifactId>
+			<artifactId>archunit-junit5</artifactId>
 			<version>${archunit.version}</version>
 			<scope>test</scope>
 		</dependency>
