@@ -42,7 +42,7 @@ class ContractTest {
 		contract.sign(SignDate.of(2018, 12, 24));
 
 		// then
-		assertThat(contract.isSigned()).isEqualTo(true);
+		assertThat(contract.isSigned()).isTrue();
 		assertThat(contract.signDate()).isEqualTo(SignDate.of(2018, 12, 24));
 		// check that event ContractSigned is fired
 	}
