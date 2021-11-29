@@ -26,7 +26,7 @@ public class ContractDatabaseEntity {
 	private String car;
 	
 	@Column(name = "price_amount")
-	private int priceAmount;
+	private long priceAmount;
 	
 	@Column(name = "price_currency")
 	private String priceCurrency;
@@ -41,7 +41,7 @@ public class ContractDatabaseEntity {
 		dbEntity.number = contract.number().value();
 		dbEntity.lessee = contract.lessee().value();
 		dbEntity.car = contract.car().value();
-		dbEntity.priceAmount = contract.price().amount();
+		dbEntity.priceAmount = contract.price().amountInCents();
 		dbEntity.priceCurrency = contract.price().currency();
 		if(contract.isSigned()) {
 			dbEntity.signDate = contract.signDate().value();
