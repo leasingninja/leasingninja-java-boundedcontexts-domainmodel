@@ -11,6 +11,9 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	private final Customer lessee;
 	private final Car car;
 	private final Amount price;
+	
+	private Amount installment;
+
 	private SignDate signDate;
 
 	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
@@ -50,7 +53,34 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	public Amount price() {
 		return price;
 	}
-	
+
+	public boolean isCalculated() {
+		return installment != null;
+	}
+
+	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
+		assert !isSigned();
+
+		double inAdvance = 0;
+		double residualValue = 0;
+
+		double pmt = FinancialCalculator.pmt(
+			leaseTerm.noOfMonths(),
+			interest.perMonth(),
+			-1 * price.amount(),
+			residualValue,
+			inAdvance);
+
+		installment =  Amount.of(pmt, price.currency());
+
+		assert isCalculated();
+	}
+
+	public Amount installment() {
+		assert isCalculated();
+		return installment;
+	}
+
 	public void sign(SignDate date) {
 		assert date != null;
 		assert !isSigned();
