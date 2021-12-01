@@ -3,7 +3,8 @@ package io.leasingninja.sales.domain;
 import java.util.Objects;
 
 import org.jmolecules.ddd.annotation.Entity;
-import org.jmolecules.ddd.annotation.Factory;
+//import org.jmolecules.ddd.annotation.Factory;
+import org.jmolecules.ddd.annotation.Identity;
 
 @Entity
 public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber> {
@@ -38,6 +39,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 		this.price = price;
 	}
 
+	@Identity
 	public ContractNumber number() {
 		return identity();
 	}
