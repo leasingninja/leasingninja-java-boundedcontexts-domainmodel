@@ -4,31 +4,39 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import io.leasingninja.sales.domain.Amount;
-import io.leasingninja.sales.domain.Car;
-import io.leasingninja.sales.domain.Contract;
-import io.leasingninja.sales.domain.ContractNumber;
-import io.leasingninja.sales.domain.Customer;
-import io.leasingninja.sales.domain.SignDate;
-
 class ContractTest {
 
-	/*
 	@Test
 	void givenAFilledOutContract_whenCalculate_thenInstallmentIsX() {
 		// given
 		var contract = new Contract(ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
-				Car.of("Tesla Model 3"),
+				Car.of("Volkswagen ID.3"),
 				Amount.of(40_000, "EUR"));
 
 		// when
-		contract.calculateFor(Term.of(48), Interest.of(3.7));
+		contract.calculateInstallmentFor(LeaseTerm.ofMonths(48), Interest.of(3.7));
 
 		// then
+		assertThat(contract.isCalculated()).isTrue();
 		assertThat(contract.installment()).isEqualTo(Amount.of(897.80, "EUR"));
 	}
-*/
+
+	@Test
+	void givenAFilledOutContractWith0Interest_whenCalculate_thenInstallmentIsX() {
+		// given
+		var contract = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Volkswagen ID.3"),
+				Amount.of(40_000, "EUR"));
+
+		// when
+		contract.calculateInstallmentFor(LeaseTerm.ofMonths(48), Interest.of(0));
+
+		// then
+		assertThat(contract.isCalculated()).isTrue();
+		assertThat(contract.installment()).isEqualTo(Amount.of(833.33, "EUR"));
+	}
 
 	@Test
 	void givenANewContract_whenSign_thenContractIsSigned() {
