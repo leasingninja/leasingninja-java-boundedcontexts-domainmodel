@@ -4,7 +4,7 @@ public class ContractModel {
 	public ContractModel() {
 	}
 
-	public ContractModel(String number, String lessee, String car, int price_amount,
+	public ContractModel(String number, String lessee, String car, double price_amount,
 			String price_currency) {
 		this.number = number;
 		this.lessee = lessee;
@@ -16,6 +16,6 @@ public class ContractModel {
 	public String number = "";
 	public String lessee = "";
 	public String car = "";
-	public int price_amount;
+	public double price_amount;
 	public String price_currency = "";
 }
