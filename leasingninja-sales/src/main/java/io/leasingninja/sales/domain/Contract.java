@@ -1,6 +1,7 @@
 package io.leasingninja.sales.domain;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.jmolecules.ddd.annotation.Entity;
 //import org.jmolecules.ddd.annotation.Factory;
@@ -13,9 +14,9 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	private final Car car;
 	private final Amount price;
 	
-	private Amount installment;
+	private Optional<Amount> installment;
 
-	private SignDate signDate;
+	private Optional<SignDate> signDate;
 
 	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
 	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, SignDate signDate) {
@@ -27,7 +28,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 //		assert signDate != null;
 		
 		var contract = new Contract(number, lessee, car, price);
-		contract.signDate = signDate; // TODO: set directly here or replay with sign() ?
+		contract.signDate = Optional.of(signDate); // TODO: set directly here or replay with sign() ?
 
 		return contract;
 	}
@@ -37,6 +38,8 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
+		this.installment = Optional.empty();
+		this.signDate = Optional.empty();
 	}
 
 	@Identity
@@ -57,7 +60,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	public boolean isCalculated() {
-		return installment != null;
+		return installment.isPresent();
 	}
 
 	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
@@ -73,21 +76,21 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 			residualValue,
 			inAdvance);
 
-		installment =  Amount.of(pmt, price.currency());
+		installment = Optional.of(Amount.of(pmt, price.currency()));
 
 		assert isCalculated();
 	}
 
 	public Amount installment() {
 		assert isCalculated();
-		return installment;
+		return installment.get();
 	}
 
 	public void sign(SignDate date) {
 		assert date != null;
 		assert !isSigned();
 		
-		this.signDate = date;
+		this.signDate = Optional.of(date);
 		
 		assert isSigned();
 	}
@@ -98,7 +101,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	
 	public SignDate signDate() {
 		assert isSigned();
-		return this.signDate;
+		return this.signDate.get();
 	}
 	
 	@Override
