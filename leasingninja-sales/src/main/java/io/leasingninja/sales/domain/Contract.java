@@ -19,15 +19,14 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	private Optional<SignDate> signDate;
 
 	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
-	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, SignDate signDate) {
+	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> signDate) {
 		requireNonNull(number);
 		requireNonNull(lessee);
 		requireNonNull(car);
 		requireNonNull(price);
-//		assert signDate != null;
 		
 		var contract = new Contract(number, lessee, car, price);
-		contract.signDate = Optional.of(signDate); // TODO: set directly here or replay with sign() ?
+		contract.signDate = signDate; // TODO: set directly here or replay with sign() ?
 
 		return contract;
 	}

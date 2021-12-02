@@ -1,6 +1,7 @@
 package io.leasingninja.sales.infrastructure;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,12 +51,15 @@ public class ContractDatabaseEntity {
 	}
 
 	public Contract toContract() {
+		
 		return Contract.restore(
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
 				Amount.of(priceAmount, priceCurrency),
-				signDate != null ? SignDate.of(signDate) : null);
+				signDate != null
+					? Optional.of(SignDate.of(signDate))
+					: Optional.empty());
 	}
 
 }

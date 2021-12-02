@@ -1,7 +1,10 @@
 package io.leasingninja.sales.application;
 
+
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.*;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,7 +56,7 @@ class SignContractTest {
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),
 				Amount.of(10_000,  "EUR"),
-				SignDate.of(2018, 04, 12))));
+				Optional.of(SignDate.of(2018, 04, 12)))));
 //		then(inboxApplicationServiceMock).should().meldeUnterschriebenenVertrag("4711", "2018-04-12");
 		then(inboxApplicationServiceMock).should().confirmSignedContract("4711", 2018, 04, 12);
 		//liesVertrag() liefert unterschriebenen Vertrag?
