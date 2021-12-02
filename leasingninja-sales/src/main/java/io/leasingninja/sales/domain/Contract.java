@@ -33,6 +33,12 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
 		super(number);
+
+		requireNonNull(number);
+		requireNonNull(lessee);
+		requireNonNull(car);
+		requireNonNull(price);
+		
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
@@ -62,6 +68,8 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
+		requireNonNull(leaseTerm);
+		requireNonNull(interest);
 		assert !isSigned();
 
 		double inAdvance = 0;
@@ -85,7 +93,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	public void sign(SignDate date) {
-		assert date != null;
+		requireNonNull(date);
 		assert !isSigned();
 		
 		this.signDate = Optional.of(date);
@@ -94,7 +102,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	public boolean isSigned() {
-		return this.signDate != null;
+		return this.signDate.isPresent();
 	}
 	
 	public SignDate signDate() {

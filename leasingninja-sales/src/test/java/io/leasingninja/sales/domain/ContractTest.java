@@ -2,6 +2,8 @@ package io.leasingninja.sales.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 class ContractTest {
@@ -65,7 +67,7 @@ class ContractTest {
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
 				Amount.of(20_000, "EUR"),
-				SignDate.of(2018, 04, 12));
+				Optional.of(SignDate.of(2018, 04, 12)));
 
 		// then
 		assertThat(contract.number()).isEqualTo(ContractNumber.of("4711"));
