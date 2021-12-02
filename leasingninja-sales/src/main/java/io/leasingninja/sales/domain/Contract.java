@@ -1,6 +1,6 @@
 package io.leasingninja.sales.domain;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import org.jmolecules.ddd.annotation.Entity;
@@ -20,11 +20,10 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 
 	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
 	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, SignDate signDate) {
-		assert number != null;
-		assert lessee != null;
-		assert car != null;
-		assert price != null;
-		Objects.requireNonNull(number);
+		requireNonNull(number);
+		requireNonNull(lessee);
+		requireNonNull(car);
+		requireNonNull(price);
 //		assert signDate != null;
 		
 		var contract = new Contract(number, lessee, car, price);
