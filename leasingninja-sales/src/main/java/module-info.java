@@ -10,12 +10,8 @@ module io.leasingninja.sales {
 //    opens io.leasingninja.sales.infrastructure to spring.data.jpa; // for jpa
 //	opens io.leasingninja.sales.infrastructure to io.leasingninja.webapp;
 
-    // alle
-//    requires org.apache.logging.slf4j;
-//    requires  org.slf4j; // erst mit Version 1.8
-//    requires slf4j.api;
-//    requires transitive logback.classic;
-    requires org.apache.logging.log4j;
+    // all layers
+    requires org.slf4j;
 	
     // Domain Layer
     requires org.jmolecules.ddd;

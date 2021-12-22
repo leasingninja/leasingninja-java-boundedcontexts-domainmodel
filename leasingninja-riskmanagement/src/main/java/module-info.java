@@ -5,7 +5,7 @@
 module io.leasingninja.riskmanagement {
 	exports io.leasingninja.riskmanagement.application;
 	
-    requires org.apache.logging.log4j;
+	requires org.slf4j;
 
 	requires io.hschwentner.dddbits;
 

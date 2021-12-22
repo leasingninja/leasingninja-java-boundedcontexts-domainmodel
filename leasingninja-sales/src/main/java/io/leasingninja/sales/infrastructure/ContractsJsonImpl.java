@@ -1,5 +1,8 @@
 package io.leasingninja.sales.infrastructure;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 
 import io.leasingninja.sales.domain.Contract;
@@ -8,10 +11,12 @@ import io.leasingninja.sales.domain.Contracts;
 
 public class ContractsJsonImpl implements Contracts  {
 
+    private static Logger logger = LoggerFactory.getLogger(ContractsJsonImpl.class);
+
 	@Override
 	public void save(Contract contract) {
 		String serializedContract = new Gson().toJson(contract);
-		System.out.println("ContractRepositoryJsonImpl: Vertrag als JSON: " + serializedContract);
+		logger.debug("Contract as JSON: " + serializedContract);
 	}
 
 //	@Override  //JACKSON

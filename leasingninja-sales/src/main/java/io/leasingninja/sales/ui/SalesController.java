@@ -2,6 +2,9 @@ package io.leasingninja.sales.ui;
 
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,8 @@ import io.leasingninja.sales.domain.SignDate;
 @Controller
 public class SalesController {
 	
+    private static Logger logger = LoggerFactory.getLogger(SalesController.class);
+
 	private final FilloutContract filloutContract;
 	private final ViewContract viewContract;
 	private final SignContract signContract;
@@ -45,20 +50,20 @@ public class SalesController {
 //						? VertragModelMapper.modelFrom(vertrag)
 //						: new VertragModel();
 //		model.addAttribute("vertrag", vertragModel);
-//		System.out.println("VertriebController: vertragnummer:" + vertragModel.nummer);
+//		logger.debug("VertriebController: vertragnummer:" + vertragModel.nummer);
 //		model.addAttribute("editing_disabled", !vertrag.isUnterschrieben());
 //		return "fillout_contract";
 		
-		System.out.println("SalesController: contractNumber:" + contractNumberString);
+		logger.debug("ContractNumber:" + contractNumberString);
 		model.addAttribute("contract", new ContractModel());
 		model.addAttribute("editing_disabled", false);
 		if (contractNumberString != null) {
 			var contract = this.viewContract.with(ContractNumber.of(contractNumberString));
 			var contractModel = ContractModelMapper.modelFrom(contract);
 			model.addAttribute("contract", contractModel);
-			System.out.println("SalesController: contractNumber:" + contractModel.number);
+			logger.debug("SalesController: contractNumber:" + contractModel.number);
 			model.addAttribute("editing_disabled", contract.isSigned());
-			System.out.println("SalesController: editing_disabled:" + contract.isSigned());
+			logger.debug("SalesController: editing_disabled:" + contract.isSigned());
 		}
 		return "contractView";
 			
@@ -73,7 +78,7 @@ public class SalesController {
 //						this.vertragService.liesVertrag(vertragsnummer) :
 //						new VertragModel();
 //		model.addAttribute("vertrag", vertragModel);
-//		System.out.println("VertriebController: vertragnummer:" + vertragModel.nummer);
+//		logger.debug("VertriebController: vertragnummer:" + vertragModel.nummer);
 //		model.addAttribute("editing_disabled", vertragModel.);
 //		return "view_contract";
 //	}

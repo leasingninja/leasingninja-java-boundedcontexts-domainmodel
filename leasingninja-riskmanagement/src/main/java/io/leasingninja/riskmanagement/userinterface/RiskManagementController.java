@@ -3,8 +3,14 @@ package io.leasingninja.riskmanagement.userinterface;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import io.leasingninja.riskmanagement.application.CheckCreditRating;
 import io.leasingninja.riskmanagement.application.ListContracts;
@@ -13,16 +19,11 @@ import io.leasingninja.riskmanagement.application.VoteContract;
 import io.leasingninja.riskmanagement.domain.ContractNumber;
 import io.leasingninja.riskmanagement.domain.CreditRating;
 import io.leasingninja.riskmanagement.domain.VoteResult;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RiskManagementController {
 	
-    private static Logger logger = LogManager.getLogger(RiskManagementController.class);
+    private static Logger logger = LoggerFactory.getLogger(RiskManagementController.class);
 
 	private final ListContracts listContracts;
 	private final ReadContract readContract;
@@ -99,6 +100,8 @@ public class RiskManagementController {
             // TODO:
             return "Invalid credit rating: " + creditRatingString;
         }
+
+		logger.debug("Trying to enter credit rating " + creditRatingString + " for contract " + contractNumber);
 
         this.checkCreditRating.checkCreditRating(
                 ContractNumber.of(contractNumber),

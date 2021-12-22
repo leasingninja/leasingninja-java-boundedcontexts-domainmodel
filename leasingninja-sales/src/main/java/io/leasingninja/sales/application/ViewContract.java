@@ -1,5 +1,8 @@
 package io.leasingninja.sales.application;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.hschwentner.dddbits.annotation.ApplicationService;
 import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractNumber;
@@ -7,6 +10,8 @@ import io.leasingninja.sales.domain.Contracts;
 
 @ApplicationService
 public class ViewContract {
+
+    private static Logger logger = LoggerFactory.getLogger(ViewContract.class);
 
 	private final Contracts contracts;
 
@@ -16,13 +21,13 @@ public class ViewContract {
 	
 	public Contract with(ContractNumber number) {
 		var contract = this.contracts.with(number);
-		System.out.println("ViewContract: " + contract);
+		logger.debug("Contract: " + contract);
 		return contract;
 	}
 
 //	public VertragModel with(String vertragsnummer) {
 //		var vertrag = this.vertragRepo.findById(Vertragsnummer.of(vertragsnummer));
-//		System.out.println("UnterschreibeVertragApplicationService: vertrag: " + vertrag);
+//		logger.debug("UnterschreibeVertragApplicationService: vertrag: " + vertrag);
 //		return vertrag != null 
 //				? VertragModelMapper.modelFrom(vertrag)
 //				: new VertragModel();
