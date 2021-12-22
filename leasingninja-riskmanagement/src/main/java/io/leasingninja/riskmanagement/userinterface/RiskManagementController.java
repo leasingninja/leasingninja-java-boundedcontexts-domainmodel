@@ -44,6 +44,7 @@ public class RiskManagementController {
 		return "contracts";
 	}
 	
+	// Todo: really needed?
 	@GetMapping("/riskmanagement/contract")
 	public String showContract(
 			@RequestParam(name="number", required = true) String vertragsnummerString,
@@ -65,8 +66,25 @@ public class RiskManagementController {
 		return "contract";
 	}
 
-    @PostMapping("/riskmanagement/rating")
-    public String checkCreditRating(
+	@GetMapping("/riskmanagement/rating")
+	public String showCreditRating(
+			@RequestParam(name="contract_number", required = true) String contractNumberString,
+			Model model) {
+
+		var contract = this.readContract.readContract(ContractNumber.of(contractNumberString));
+		if (contract == null) {
+			return "No contract with number " + contractNumberString + " in inbox.";
+		}
+			
+		var contractModel = ContractModelMapper.modelFrom(contract);
+		model.addAttribute("contract", contractModel);
+		model.addAttribute("editing_disabled", contract.isVoted());
+
+		return "rating";
+	}
+
+	@PostMapping("/riskmanagement/rating")
+    public String enterCreditRating(
             @RequestParam(name="contract_number") String contractNumber,
             @RequestParam(name="credit_rating") String creditRatingString,
             Model model) {
@@ -80,7 +98,7 @@ public class RiskManagementController {
         this.checkCreditRating.checkCreditRating(
                 ContractNumber.of(contractNumber),
                 CreditRating.valueOf(creditRatingString));
-        return "redirect:/riskmanagement/contract?number=" + contractNumber;
+        return "redirect:/riskmanagement/rating?number=" + contractNumber;
     }
 
     @PostMapping("/riskmanagement/vote")
