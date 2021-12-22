@@ -24,7 +24,7 @@
              <td><span th:text="${contract.number}"> Contract </span></td>
              <td><span th:text="${contract.creditRating}"> Credit rating </span></td>
              <td><span th:text="${contract.voteResult}"> Vote result </span></td>
-             <td><a th:href="rating?contract_number=${contract.number}">Rate</a> </td>
+             <td><a th:href="@{rating(contract_number=${contract.number})}">Rate</a> </td> <!-- Evaluates to: "rating?contract_number=4711" -->
         </tr>
     </tbody>
 </table>
