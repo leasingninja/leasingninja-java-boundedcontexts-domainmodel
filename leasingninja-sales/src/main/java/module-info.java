@@ -16,12 +16,12 @@ module io.leasingninja.sales {
 //    requires slf4j.api;
 //    requires transitive logback.classic;
 	
-	// Domain Layer
+    // Domain Layer
     requires org.jmolecules.ddd;
     requires io.hschwentner.dddbits;
-	requires io.leasingninja.riskmanagement;
-	
-	// Application Layer
+    requires io.leasingninja.riskmanagement;
+
+    // Application Layer
     requires spring.beans;
 //    requires spring.core;
     requires spring.context;
