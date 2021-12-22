@@ -21,7 +21,7 @@ public class ViewContract {
 	
 	public Contract with(ContractNumber number) {
 		var contract = this.contracts.with(number);
-		logger.debug("Contract: " + contract);
+		logger.debug("Repository returned contract: " + contract);
 		return contract;
 	}
 
