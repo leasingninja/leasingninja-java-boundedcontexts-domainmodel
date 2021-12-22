@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="contract" type="io.leasingninja.sales.ui.ContractModel"*/-->
+<!--/*@thymesVar id="editing_disabled" type="bool"*/-->
+<head>
+    <title>LeasingNinja – Sales</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<h1>Leasing contract</h1>
+    <form action="/sales/fillout_contract" method="post">
+		<fieldset id="input" th:disabled="${editing_disabled}">
+		    <div>
+		    	<label for="contractNumber">Number:</label>
+		    	<input type="text" id="contractNumber" name="contractNumber" th:value="${contract.number}">
+			</div>
+		    <div>
+		    	<label for="lessee">Lessee:</label>
+		    	<input type="text" id="lessee" name="lessee" th:value="${contract.lessee}">
+			</div>
+		    <div>
+		    	<label for="car">Car:</label>
+		    	<input type="text" id="car" name="car" th:value="${contract.car}">
+			</div>
+		    <div>
+		    	<label for="price_amount">Price:</label>
+		    	<input type="number" id="price_amount" name="price_amount" th:value="${contract.price_amount}">
+		    	<select id="price_currency" name="price_currency" th:value="${contract.price_currency}">
+				  <option>EUR</option>
+				  <option>GPB</option>
+				  <option>USD</option>
+				</select>
+			</div>
+			<div>
+		     	<button type="submit">Rate</button>
+		     	<button type="submit" formaction="/sales/sign_contract">Vote</button>
+			</div>
+		  </fieldset>
+    </form>
+    
+</body>
+</html>

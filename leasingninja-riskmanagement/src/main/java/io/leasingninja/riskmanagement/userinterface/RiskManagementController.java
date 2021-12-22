@@ -1,5 +1,11 @@
 package io.leasingninja.riskmanagement.userinterface;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import io.leasingninja.riskmanagement.application.CheckCreditRating;
 import io.leasingninja.riskmanagement.application.ListContracts;
 import io.leasingninja.riskmanagement.application.ReadContract;
@@ -13,12 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Controller
 public class RiskManagementController {
 	
+    private static Logger logger = LogManager.getLogger(RiskManagementController.class);
+
 	private final ListContracts listContracts;
 	private final ReadContract readContract;
 	private final CheckCreditRating checkCreditRating;
@@ -37,7 +42,7 @@ public class RiskManagementController {
 		List<ContractModel> contractModels = this.listContracts.all().stream()
 				.map(ContractModelMapper::modelFrom)
 				.collect(Collectors.toUnmodifiableList());
-		System.out.println("Contract models: " + contractModels);
+		logger.debug("Contract models: " + contractModels);
 		model.addAttribute(
 				"contracts",
 				contractModels);
