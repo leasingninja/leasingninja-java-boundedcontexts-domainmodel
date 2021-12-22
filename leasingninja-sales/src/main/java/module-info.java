@@ -15,6 +15,7 @@ module io.leasingninja.sales {
 //    requires  org.slf4j; // erst mit Version 1.8
 //    requires slf4j.api;
 //    requires transitive logback.classic;
+    requires org.apache.logging.log4j;
 	
     // Domain Layer
     requires org.jmolecules.ddd;
