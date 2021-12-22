@@ -26,7 +26,7 @@ public class CheckCreditRating {
 		requireNonNull(rating);
 
 		var contract = this.contracts.findById(contractnumber);
-		
+
 		contract.checkCreditRating(rating);
 
 		this.contracts.save(contract);
