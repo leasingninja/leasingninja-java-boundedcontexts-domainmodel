@@ -43,8 +43,6 @@ public class RiskManagementController {
 				contractModels);
 		return "contracts";
 	}
-
-
 	
 	@GetMapping("/riskmanagement/contract")
 	public String showContract(
@@ -64,50 +62,25 @@ public class RiskManagementController {
 		model.addAttribute("contract", vertragModel);
 		model.addAttribute("editing_disabled", contract.isVoted());
 
-		return "contracts";
+		return "contract";
 	}
 
-
-	@GetMapping("/riskmanagement/rating")
-	public String showRatings(
-			@RequestParam(name="contract_number") String contract_number,
-			Model model) {
-
-		System.out.println(" --> /riskmanagement/rating called -> contract_number" + contract_number  );
-
-		var contract = this.readContract.readContract(ContractNumber.of(contract_number));
-
-		var vertragModel = ContractModelMapper.modelFrom(contract);
-		model.addAttribute("contract", vertragModel);
-
-
-		return "rating";
-	}
-
-    @PostMapping("/riskmanagement/vote_contract")
+    @PostMapping("/riskmanagement/rating")
     public String checkCreditRating(
             @RequestParam(name="contract_number") String contractNumber,
-            @RequestParam(name="vote_result") String voteResult,
+            @RequestParam(name="credit_rating") String creditRatingString,
             Model model) {
 	    try {
-			System.out.println(" ||| ----> contractNumber " + contractNumber + " voteResult " + voteResult );
-            //CreditRating.valueOf(voteResult);
+            CreditRating.valueOf(creditRatingString);
         } catch(IllegalArgumentException exception) {
             // TODO:
-            //return "Invalid credit rating: " + voteResult;
+            return "Invalid credit rating: " + creditRatingString;
         }
 
-	    try {
-			System.out.println("**** CreditRating.valueOf(voteResult)  " + CreditRating.valueOf(voteResult)
-					+ "voteResult " + voteResult);
-			// TODO --> fix
-			this.checkCreditRating.checkCreditRating(
-					ContractNumber.of(contractNumber),
-					CreditRating.Accepted);
-		} catch (Exception ex) {
-			System.out.println("ex " + ex );
-		}
-        return "redirect:/riskmanagement/contracts?number=" + contractNumber;
+        this.checkCreditRating.checkCreditRating(
+                ContractNumber.of(contractNumber),
+                CreditRating.valueOf(creditRatingString));
+        return "redirect:/riskmanagement/contract?number=" + contractNumber;
     }
 
     @PostMapping("/riskmanagement/vote")
