@@ -15,5 +15,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: maven
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+      - name: Build with Maven without tests
+        run: >
+          mvn --batch-mode --update-snapshots package -Dmaven.test.skip=true
+      - name: Build with Maven without Jigsaw
+        run: >
+          bin/enable-jigsaw.sh disable
+          mvn --batch-mode --update-snapshots package
+          bin/enable-jigsaw.sh enable
