@@ -32,7 +32,7 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo(Integer.valueOf(3));
+        assertThat(model.creditRating).isEqualTo(3);
         assertThat(model.voteResult).isEqualTo("<not voted yet>");
     }
 
@@ -48,7 +48,7 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo(Integer.valueOf(3));
+        assertThat(model.creditRating).isEqualTo(3);
         assertThat(model.voteResult).isEqualTo("ACCEPTED");
     }
 
