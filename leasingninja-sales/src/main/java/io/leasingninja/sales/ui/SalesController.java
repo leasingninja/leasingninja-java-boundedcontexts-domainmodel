@@ -54,16 +54,17 @@ public class SalesController {
 //		model.addAttribute("editing_disabled", !vertrag.isUnterschrieben());
 //		return "fillout_contract";
 		
-		logger.debug("ContractNumber:" + contractNumberString);
+		logger.debug("Trying to show contract " + contractNumberString);
+		
 		model.addAttribute("contract", new ContractModel());
 		model.addAttribute("editing_disabled", false);
 		if (contractNumberString != null) {
 			var contract = this.viewContract.with(ContractNumber.of(contractNumberString));
 			var contractModel = ContractModelMapper.modelFrom(contract);
 			model.addAttribute("contract", contractModel);
-			logger.debug("SalesController: contractNumber:" + contractModel.number);
+			logger.trace("Contract number in model: " + contractModel.number);
 			model.addAttribute("editing_disabled", contract.isSigned());
-			logger.debug("SalesController: editing_disabled:" + contract.isSigned());
+			logger.trace("editing_disabled: " + contract.isSigned());
 		}
 		return "contractView";
 			
