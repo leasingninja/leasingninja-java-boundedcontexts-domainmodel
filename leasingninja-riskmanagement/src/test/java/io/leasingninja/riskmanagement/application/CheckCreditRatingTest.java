@@ -33,13 +33,13 @@ class CheckCreditRatingTest {
 		var contract = new Contract(ContractNumber.of("4711"), SignDate.of(2018, 4, 1));
 
 		// when
-		contract.checkCreditRating(CreditRating.GOOD);
+		contract.checkCreditRating(CreditRating.of(3));
 //		contract.calculateResaleValue(); //TODO: wollen wir das?
 		contract.vote(VoteResult.ACCEPTED);
 
 		// then
 		assertThat(contract.isRated()).isTrue();
-		assertThat(contract.rating()).isEqualTo(CreditRating.GOOD);
+		assertThat(contract.rating()).isEqualTo(CreditRating.of(3));
 		assertThat(contract.isVoted()).isTrue();
 	}
 
@@ -65,13 +65,13 @@ class CheckCreditRatingTest {
 				.willReturn(new Contract(ContractNumber.of("4711"), SignDate.of(2018, 4, 1)));
 
 		// when
-		serviceUnderTest.checkCreditRating(ContractNumber.of("4711"), CreditRating.GOOD);
+		serviceUnderTest.checkCreditRating(ContractNumber.of("4711"), CreditRating.of(3));
 
 		// then
 		then(contractRepositoryMock).should().save(refEq(Contract.restore(
 				ContractNumber.of("4711"),
 				SignDate.of(2018, 4, 1),
-				CreditRating.GOOD,
+				CreditRating.of(3),
 				null)));
 //		Contract contract = serviceUnderTest.readContract(Contractnumber.of("4711")); // TODO: or showContract
 //		assertThat(contract.isRated()).isTrue();

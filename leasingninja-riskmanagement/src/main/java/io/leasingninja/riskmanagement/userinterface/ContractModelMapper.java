@@ -11,7 +11,8 @@ public class ContractModelMapper {
 
 		return new ContractModel(
 				contract.identity().value(),
-				contract.isRated() ? contract.rating().toString() : "<not rated yet>",
+				//contract.isRated() ? contract.rating().toString() : "<not rated yet>",
+				contract.isRated() ? Integer.valueOf(contract.rating().value()) : null,
 				contract.isVoted() ? contract.votingResult().toString() : "<not voted yet>");
 	}
 

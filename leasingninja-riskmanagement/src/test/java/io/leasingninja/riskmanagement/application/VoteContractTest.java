@@ -33,7 +33,7 @@ class VoteContractTest {
 				.willReturn(Contract.restore(
 						ContractNumber.of("4711"),
 						SignDate.of(2018, 4, 1),
-						CreditRating.GOOD,
+						CreditRating.of(3),
 						null));
 
 		// when
@@ -43,7 +43,7 @@ class VoteContractTest {
 		then(contractRepositoryMock).should().save(refEq(Contract.restore(
 				ContractNumber.of("4711"),
 				SignDate.of(2018, 4, 1),
-				CreditRating.GOOD,
+				CreditRating.of(3),
 				VoteResult.ACCEPTED)));
 	}
 

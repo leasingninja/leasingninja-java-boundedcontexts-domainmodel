@@ -1,6 +1,16 @@
 package io.leasingninja.riskmanagement.domain;
 
-// TODO: umbauen auf TinyIntType mit Grenzen 1 - 10
-public enum CreditRating {
-	GOOD
+public record CreditRating(int value) {
+
+	public CreditRating {
+		assert isValid(value);
+	}
+
+	public static boolean isValid(int value) {
+		return value >= 1 && value <= 10;
+	}
+
+	public static CreditRating of(int value) {
+		return new CreditRating(value);
+	}
 }

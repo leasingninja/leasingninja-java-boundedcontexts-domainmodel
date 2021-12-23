@@ -89,24 +89,21 @@ public class RiskManagementController {
 		return "rating";
 	}
 
-	@PostMapping("/riskmanagement/rating")
+	@PostMapping("/riskmanagement/rate_contract")
     public String enterCreditRating(
             @RequestParam(name="contract_number") String contractNumber,
-            @RequestParam(name="credit_rating") String creditRatingString,
+            @RequestParam(name="creditRating") Integer creditRatingString,
             Model model) {
-	    try {
-            CreditRating.valueOf(creditRatingString);
-        } catch(IllegalArgumentException exception) {
-            // TODO:
-            return "Invalid credit rating: " + creditRatingString;
-        }
+		if (contractNumber == null || creditRatingString == null || !CreditRating.isValid(creditRatingString)) {
+			return "Invalid parameters: contract number: " + contractNumber + ", credit rating: " + creditRatingString;
+		}
 
 		logger.debug("Trying to enter credit rating " + creditRatingString + " for contract " + contractNumber);
-
-        this.checkCreditRating.checkCreditRating(
+		this.checkCreditRating.checkCreditRating(
                 ContractNumber.of(contractNumber),
-                CreditRating.valueOf(creditRatingString));
-        return "redirect:/riskmanagement/rating?number=" + contractNumber;
+                CreditRating.of(creditRatingString));
+
+		return "redirect:/riskmanagement/rating?contract_number=" + contractNumber;
     }
 
     @PostMapping("/riskmanagement/vote")

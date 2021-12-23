@@ -25,14 +25,14 @@ public class ContractModelMapperTest {
     void givenARatedButUnvotedContract_whenMapped_thenUnvotedModel() {
         // Given
         var contract = new Contract(ContractNumber.of("12345"), SignDate.of(2019, 3, 5));
-        contract.checkCreditRating(CreditRating.GOOD);
+        contract.checkCreditRating(CreditRating.of(3));
 
         // When
         var model = ContractModelMapper.modelFrom(contract);
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("GOOD");
+        assertThat(model.creditRating).isEqualTo(Integer.valueOf(3));
         assertThat(model.voteResult).isEqualTo("<not voted yet>");
     }
 
@@ -40,7 +40,7 @@ public class ContractModelMapperTest {
     void givenAVotedContract_whenMapped_thenUnvotedModel() {
         // Given
         var contract = new Contract(ContractNumber.of("12345"), SignDate.of(2019, 3, 5));
-        contract.checkCreditRating(CreditRating.GOOD);
+        contract.checkCreditRating(CreditRating.of(3));
         contract.vote(VoteResult.ACCEPTED);
 
         // When
@@ -48,7 +48,7 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("GOOD");
+        assertThat(model.creditRating).isEqualTo(Integer.valueOf(3));
         assertThat(model.voteResult).isEqualTo("ACCEPTED");
     }
 
