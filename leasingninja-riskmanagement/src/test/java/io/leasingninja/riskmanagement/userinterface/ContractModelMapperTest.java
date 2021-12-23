@@ -17,7 +17,7 @@ public class ContractModelMapperTest {
 
         // Then
         assertThat(model.number).isEqualTo("12345");
-        assertThat(model.creditRating).isEqualTo("<not rated yet>");
+        assertThat(model.creditRating).isEqualTo(null);
         assertThat(model.voteResult).isEqualTo("<not voted yet>");
     }
 
