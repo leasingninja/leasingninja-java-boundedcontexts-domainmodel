@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/leasingninja.iml" filepath="$PROJECT_DIR$/leasingninja.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leasingninja-riskmanagement/leasingninja-riskmanagement.iml" filepath="$PROJECT_DIR$/leasingninja-riskmanagement/leasingninja-riskmanagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leasingninja-sales/leasingninja-sales.iml" filepath="$PROJECT_DIR$/leasingninja-sales/leasingninja-sales.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leasingninja-webapp/leasingninja-webapp.iml" filepath="$PROJECT_DIR$/leasingninja-webapp/leasingninja-webapp.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,20 +1,24 @@
 /**
  * @author henning
  *
- */
+
 module io.leasingninja.riskmanagement {
 	exports io.leasingninja.riskmanagement.application;
-	
+	exports io.leasingninja.riskmanagement.userinterface;
+	exports io.leasingninja.riskmanagement.domain;
+
 	requires io.hschwentner.dddbits;
 
 	requires spring.beans;
 //	requires spring.core;
-	requires spring.context;	
+	requires spring.context;
 	requires spring.web;
 	requires spring.webmvc;
 //	requires spring.boot;
 //	requires spring.boot.autoconfigure;
 }
+ */
+
 
 
 

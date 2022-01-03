@@ -5,7 +5,7 @@
  *
  */
 //@BoundedContext TODO: comment in again when DDDBITS support Java 9
-module io.leasingninja.sales {
+//module io.leasingninja.sales {
 //    exports io.leasingninja.sales.infrastructure; // for jpa
 //    opens io.leasingninja.sales.infrastructure to spring.data.jpa; // for jpa
 //	opens io.leasingninja.sales.infrastructure to io.leasingninja.webapp;
@@ -17,6 +17,7 @@ module io.leasingninja.sales {
 //    requires transitive logback.classic;
 	
     // Domain Layer
+ /*
     requires org.jmolecules.ddd;
     requires io.hschwentner.dddbits;
     requires io.leasingninja.riskmanagement;
@@ -43,7 +44,7 @@ module io.leasingninja.sales {
     /* JSON implementation */
 //    requires com.fasterxml.jackson.databind;
 //    requires transitive com.fasterxml.jackson.core;
-    requires com.google.gson;
+   // requires com.google.gson;
 }
 
 

@@ -18,7 +18,7 @@ import io.leasingninja.sales.domain.SignDate;
 @Entity
 @Table(name = "contracts")
 public class ContractDatabaseEntity {
-	
+
 	@Id
 	private String number;
 	

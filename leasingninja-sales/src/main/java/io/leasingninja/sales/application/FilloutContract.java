@@ -17,7 +17,7 @@ public class FilloutContract {
 		this.contracts = contracts;
 	}
 	
-	public void with(ContractNumber number, Customer customer, Car car, Amount amount) {
+	public void with(ContractNumber number, Customer customer,	 Car car, Amount amount) {
 		contracts.save(new Contract(
 				number, 
 				customer, 

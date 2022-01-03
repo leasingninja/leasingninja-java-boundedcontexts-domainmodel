@@ -1,12 +1,16 @@
 package io.leasingninja.sales.ui;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import io.leasingninja.sales.application.FilloutContract;
 import io.leasingninja.sales.application.SignContract;
@@ -16,6 +20,8 @@ import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Customer;
 import io.leasingninja.sales.domain.SignDate;
+
+import javax.validation.Valid;
 
 @Controller
 public class SalesController {
@@ -35,7 +41,7 @@ public class SalesController {
 
 	@GetMapping("/sales/view_contract")
 	public String viewContract(
-			@RequestParam(name="contractNumber", required = false) String contractNumberString,
+			  @RequestParam(name="contractNumber", required = false) String contractNumberString,
 			Model model) {
 //		var vertrag = 
 //				vertragsnummer != null 
@@ -50,17 +56,17 @@ public class SalesController {
 //		return "fillout_contract";
 		
 		System.out.println("SalesController: contractNumber:" + contractNumberString);
-		model.addAttribute("contract", new ContractModel());
+		model.addAttribute("contractModel", new ContractModel());
 		model.addAttribute("editing_disabled", false);
 		if (contractNumberString != null) {
 			var contract = this.viewContract.with(ContractNumber.of(contractNumberString));
 			var contractModel = ContractModelMapper.modelFrom(contract);
-			model.addAttribute("contract", contractModel);
-			System.out.println("SalesController: contractNumber:" + contractModel.number);
+			model.addAttribute("contractModel", contractModel);
+			System.out.println("SalesController: contractNumber:" + contractModel.getNumber());
 			model.addAttribute("editing_disabled", contract.isSigned());
 			System.out.println("SalesController: editing_disabled:" + contract.isSigned());
 		}
-		return "contractView";
+		return "contractView.html";
 			
 	}
 
@@ -79,19 +85,19 @@ public class SalesController {
 //	}
 
 	@PostMapping("/sales/fillout_contract")
-	public String filloutContract(
-			@RequestParam(name="contractNumber") String contractNumberString,
-			@RequestParam(name="lessee") String lesseeString,
-			@RequestParam(name="car") String carString,
-			@RequestParam(name="price_amount") int priceAmount,
-			@RequestParam(name="price_currency") String priceCurrency,
-			Model model) {
+	public String filloutContract(@Valid ContractModel contractModel,
+								  BindingResult bindingResult,
+								  Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "contractView.html";
+		}
 		this.filloutContract.with(
-				ContractNumber.of(contractNumberString), 
-				Customer.of(lesseeString), 
-				Car.of(carString),
-				Amount.of(priceAmount, priceCurrency));
-		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
+				ContractNumber.of(contractModel.getNumber()),
+				Customer.of(contractModel.getLessee()),
+				Car.of(contractModel.getCar()),
+				Amount.of(contractModel.getPrice_amount(), contractModel.getCar()));
+		return "redirect:/sales/view_contract?contractNumber=" + contractModel.getNumber();
 	}
 
 	@PostMapping("/sales/sign_contract")
@@ -104,6 +110,19 @@ public class SalesController {
 //		}
 		this.signContract.with(ContractNumber.of(contractNumberString), SignDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth()));
 		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, String> handleValidationExceptions(
+			MethodArgumentNotValidException ex) {
+		Map<String, String> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String errorMessage = error.getDefaultMessage();
+			errors.put(fieldName, errorMessage);
+		});
+		return errors;
 	}
 
 }

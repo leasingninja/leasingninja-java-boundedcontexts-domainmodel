@@ -7,11 +7,17 @@ import org.jmolecules.ddd.annotation.Entity;
 //import org.jmolecules.ddd.annotation.Factory;
 import org.jmolecules.ddd.annotation.Identity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 @Entity
 public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber> {
 
+
 	private final Customer lessee;
+
 	private final Car car;
+
 	private final Amount price;
 	
 	private Optional<Amount> installment;
