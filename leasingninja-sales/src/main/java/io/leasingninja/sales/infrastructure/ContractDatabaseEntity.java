@@ -27,7 +27,7 @@ public class ContractDatabaseEntity {
 	private String car;
 	
 	@Column(name = "price_amount")
-	private long priceAmount;
+	private String priceAmount;
 	
 	@Column(name = "price_currency")
 	private String priceCurrency;
@@ -56,7 +56,7 @@ public class ContractDatabaseEntity {
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
-				Amount.of(priceAmount, priceCurrency),
+				Amount.of(Double.valueOf(priceAmount), priceCurrency),
 				signDate != null
 					? Optional.of(SignDate.of(signDate))
 					: Optional.empty());

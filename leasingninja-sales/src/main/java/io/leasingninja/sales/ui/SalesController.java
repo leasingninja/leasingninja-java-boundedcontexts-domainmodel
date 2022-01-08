@@ -86,8 +86,8 @@ public class SalesController {
 
 	@PostMapping("/sales/fillout_contract")
 	public String filloutContract(@Valid ContractModel contractModel,
-								  BindingResult bindingResult,
-								  Model model) {
+								  final BindingResult bindingResult,
+								  final Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "contractView.html";
@@ -96,7 +96,7 @@ public class SalesController {
 				ContractNumber.of(contractModel.getNumber()),
 				Customer.of(contractModel.getLessee()),
 				Car.of(contractModel.getCar()),
-				Amount.of(contractModel.getPrice_amount(), contractModel.getCar()));
+				Amount.of(Long.valueOf(contractModel.getPrice_amount()), contractModel.getCar()));
 		return "redirect:/sales/view_contract?contractNumber=" + contractModel.getNumber();
 	}
 

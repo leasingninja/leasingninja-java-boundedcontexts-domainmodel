@@ -84,7 +84,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 		double pmt = FinancialCalculator.pmt(
 			leaseTerm.noOfMonths(),
 			interest.perMonth(),
-			-1 * price.amount(),
+			-1 * Double.valueOf(price.amount()),
 			residualValue,
 			inAdvance);
 

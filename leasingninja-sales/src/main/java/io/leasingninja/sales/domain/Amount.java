@@ -6,10 +6,10 @@ import org.jmolecules.ddd.annotation.ValueObject;
 @ValueObject
 public class Amount {
 
-	private final long amountInCents;
+	private final String amountInCents;
 	private final String currency;
 
-	private Amount(long amountInCents, String currency) {
+	private Amount(String amountInCents, String currency) {
 		this.amountInCents = amountInCents;
 		this.currency = currency;
 	}
@@ -17,20 +17,21 @@ public class Amount {
 	public static Amount of(double amount, String currency) {
 		assert currency != null;
 		
-		return new Amount(Math.round(amount * 100), currency);
+		// return new Amount(Math.round(amount * 100), currency);
+		return new Amount(String.valueOf(amount), currency);
 	}
 
-	public static Amount ofCents(long amount, String currency) {
+	public static Amount ofCents(double amount, String currency) {
 		assert currency != null;
 		
-		return new Amount(amount * 100, currency);
+		return new Amount(String.valueOf(amount * 100), currency);
 	}
 
-	public double amount() {
-		return amountInCents / 100d;
+	public String amount() {
+		return String.valueOf(  Double.valueOf(amountInCents) / 100d);
 	}
 
-	public long amountInCents() {
+	public String amountInCents() {
 		return amountInCents;
 	}
 
@@ -63,7 +64,7 @@ public class Amount {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Long.hashCode(amountInCents);
+		result = prime * result + Long.hashCode(Long.valueOf(amountInCents));
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		return result;
 	}

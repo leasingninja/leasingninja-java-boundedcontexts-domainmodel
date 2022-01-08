@@ -238,28 +238,29 @@
             <div>
                 <label for="number">Number:</label>
                 <input type="text" id="number" name="number" th:value="${number}">
-                <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</div>
+                <div class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</div>
             </div>
             <div>
                 <label for="lessee">Lessee:</label>
                 <input type="text" id="lessee" name="lessee" th:value="${lessee}">
-                <div th:if="${#fields.hasErrors('lessee')}" th:errors="*{lessee}">Name Error</div>
+                <div class="error"th:if="${#fields.hasErrors('lessee')}" th:errors="*{lessee}">Name Error</div>
             </div>
             <div>
                 <label for="car">Car:</label>
                 <input type="text" id="car" name="car" th:value="${car}">
-                <div th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Name Error</div>
+                <div class="error" th:if="${#fields.hasErrors('car')}" th:errors="*{car}">Name Error</div>
             </div>
             <div>
                 <label for="price_amount">Price:</label>
-                <input type="number" id="price_amount" name="price_amount" th:value="${price_amount}">
-                <div th:if="${#fields.hasErrors('price_amount')}" th:errors="*{price_amount}">Name Error</div>
+                <input type="text" id="price_amount" name="price_amount" th:value="${price_amount}">
+                <div class="error"th:if="${#fields.hasErrors('price_amount')}" th:errors="*{price_amount}">Name Error</div>
 
                 <select id="price_currency" name="price_currency" th:value="${price_currency}">
                     <option>EUR</option>
                     <option>GPB</option>
                     <option>USD</option>
                 </select>
+                <div class="error"th:if="${#fields.hasErrors('price_currency')}" th:errors="*{price_currency}">Name Error</div>
             </div>
             <div>
                 <button type="submit">Save</button>

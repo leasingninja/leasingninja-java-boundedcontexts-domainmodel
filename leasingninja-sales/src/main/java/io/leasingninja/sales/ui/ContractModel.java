@@ -1,15 +1,39 @@
 package io.leasingninja.sales.ui;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 public class ContractModel {
+
+	@NotEmpty( message = "Number field can not be empty")
+	@NotNull( message = "Number name can not be null")
+	private String number ;
+
+	@NotEmpty( message = "Lessee name can not be empty")
+	@NotNull( message = "Lessee name can not be null")
+	private String lessee ;
+
+	@NotEmpty( message = "Car name can not be empty")
+	@NotNull(  message = "Car name can not be null")
+	private String car;
+
+	@NotEmpty(message = "Price Amount  can not be empty")
+	@NotNull(message = "Price Amount  can not be null")
+	private String price_amount;
+
+	@NotEmpty(message = "Price Amount can not be empty")
+	@NotNull(message = "Price Amount  can not be null")
+	private String price_currency;
+
 	public ContractModel() {
 	}
 
-	public ContractModel(String number, String lessee, String car, double price_amount,
-			String price_currency) {
+	public ContractModel( String number,  String lessee,  String car,  String price_amount,
+						  String price_currency) {
 		this.setNumber(number);
 		this.setLessee(lessee);
 		this.setCar(car);
@@ -17,20 +41,7 @@ public class ContractModel {
 		this.setPrice_currency(price_currency);
 	}
 
-	@NotNull
-	private String number ;
 
-	@NotNull
-	private String lessee ;
-
-	@NotNull
-	private String car;
-
-	@Min(1)
-	private double price_amount=0;
-
-	@NotNull
-	private String price_currency;
 
 	public String getNumber() {
 		return number;
@@ -56,11 +67,11 @@ public class ContractModel {
 		this.car = car;
 	}
 
-	public double getPrice_amount() {
+	public String getPrice_amount() {
 		return price_amount;
 	}
 
-	public void setPrice_amount(double price_amount) {
+	public void setPrice_amount(String price_amount) {
 		this.price_amount = price_amount;
 	}
 
