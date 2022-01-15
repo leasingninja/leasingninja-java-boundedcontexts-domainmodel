@@ -262,10 +262,14 @@
                 </select>
                 <div class="error"th:if="${#fields.hasErrors('price_currency')}" th:errors="*{price_currency}">Name Error</div>
             </div>
-            <div>
-                <button type="submit">Save</button>
+
+
+            <div th:switch="${editing_disabled}">
+                <p th:case="false"><button  type="submit">Save</button></p>
+                <p th:case="true"><button style="background-color:red" type="submit" formaction="/sales/sign_contract">You can Sign !</button></p>
 
             </div>
+
         </fieldset>
     </form>
 </div>

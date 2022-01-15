@@ -1,5 +1,7 @@
 package io.leasingninja.sales.ui;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -23,6 +25,7 @@ public class ContractModel {
 
 	@NotEmpty(message = "Price Amount  can not be empty")
 	@NotNull(message = "Price Amount  can not be null")
+	@Min(0)
 	private String price_amount;
 
 	@NotEmpty(message = "Price Amount can not be empty")

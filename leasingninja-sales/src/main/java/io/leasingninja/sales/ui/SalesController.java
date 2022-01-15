@@ -56,15 +56,20 @@ public class SalesController {
 //		return "fillout_contract";
 		
 		System.out.println("SalesController: contractNumber:" + contractNumberString);
-		model.addAttribute("contractModel", new ContractModel());
-		model.addAttribute("editing_disabled", false);
+
 		if (contractNumberString != null) {
 			var contract = this.viewContract.with(ContractNumber.of(contractNumberString));
 			var contractModel = ContractModelMapper.modelFrom(contract);
-			model.addAttribute("contractModel", contractModel);
+
+			assingValuesToContactModel(contractModel, model);
 			System.out.println("SalesController: contractNumber:" + contractModel.getNumber());
-			model.addAttribute("editing_disabled", contract.isSigned());
+			//model.addAttribute("editing_disabled", contract.isSigned()); // TODO use this one
+			model.addAttribute("editing_disabled", true);
 			System.out.println("SalesController: editing_disabled:" + contract.isSigned());
+		} else {
+			model.addAttribute("contractModel", new ContractModel());
+			model.addAttribute("editing_disabled", false);
+
 		}
 		return "contractView.html";
 			
@@ -89,6 +94,7 @@ public class SalesController {
 								  final BindingResult bindingResult,
 								  final Model model) {
 
+		assingValuesToContactModel(contractModel, model);
 		if (bindingResult.hasErrors()) {
 			return "contractView.html";
 		}
@@ -123,6 +129,16 @@ public class SalesController {
 			errors.put(fieldName, errorMessage);
 		});
 		return errors;
+	}
+
+	private void assingValuesToContactModel(ContractModel contractModel, Model model) {
+		model.addAttribute("editing_disabled", false);
+		model.addAttribute("contractModel", contractModel);
+		model.addAttribute("number" ,  contractModel.getNumber());
+		model.addAttribute("lessee" ,  contractModel.getLessee());
+		model.addAttribute("car" ,  contractModel.getCar());
+		model.addAttribute("price_amount" ,  contractModel.getPrice_amount());
+		model.addAttribute("price_currency" ,  contractModel.getPrice_currency());
 	}
 
 }

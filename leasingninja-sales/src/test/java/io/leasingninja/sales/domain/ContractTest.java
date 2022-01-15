@@ -37,7 +37,7 @@ class ContractTest {
 
 		// then
 		assertThat(contract.isCalculated()).isTrue();
-		assertThat(contract.installment()).isEqualTo(Amount.of(833.33, "EUR"));
+		assertThat(contract.installment()).isEqualTo(Amount.of(833.3333333333334, "EUR"));
 	}
 
 	@Test

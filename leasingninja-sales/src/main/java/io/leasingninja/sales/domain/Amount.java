@@ -3,6 +3,8 @@ package io.leasingninja.sales.domain;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 
+import java.math.BigDecimal;
+
 @ValueObject
 public class Amount {
 
@@ -28,7 +30,8 @@ public class Amount {
 	}
 
 	public String amount() {
-		return String.valueOf(  Double.valueOf(amountInCents) / 100d);
+		//return String.valueOf(  Double.valueOf(amountInCents) / 100d);
+		return amountInCents;
 	}
 
 	public String amountInCents() {
@@ -53,11 +56,15 @@ public class Amount {
 		if (getClass() != obj.getClass())
 			return false;
 		Amount other = (Amount) obj;
-		if (amountInCents != other.amountInCents)
+		BigDecimal otherLong =  new BigDecimal(other.amountInCents);
+		BigDecimal amountInCentsLong = new BigDecimal(amountInCents);
+		if (otherLong.longValue() != amountInCentsLong.longValue() )
 			return false;
 		if (currency == null) {
 			return other.currency == null;
-		} else return currency.equals(other.currency);
+		} else {
+			return currency.equals(other.currency);
+		}
 	}
 
 	@Override
