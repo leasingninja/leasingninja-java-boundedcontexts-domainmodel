@@ -25,7 +25,8 @@ import javax.validation.Valid;
 
 @Controller
 public class SalesController {
-	
+
+	private ContractModel contractModel;
 	private final FilloutContract filloutContract;
 	private final ViewContract viewContract;
 	private final SignContract signContract;
@@ -98,6 +99,8 @@ public class SalesController {
 		if (bindingResult.hasErrors()) {
 			return "contractView.html";
 		}
+
+		this.contractModel = contractModel;
 		this.filloutContract.with(
 				ContractNumber.of(contractModel.getNumber()),
 				Customer.of(contractModel.getLessee()),
@@ -108,14 +111,15 @@ public class SalesController {
 
 	@PostMapping("/sales/sign_contract")
 	public String signContract(
-			@RequestParam(name="contractNumber") String contractNumberString,
 			Model model) {
 //		CheckResult result = ContractNumber.checkValidity(contractNumberString);
 //		if(!result.valid) {
 //			return 400 result.errors;
 //		}
-		this.signContract.with(ContractNumber.of(contractNumberString), SignDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth()));
-		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
+		this.signContract.with(ContractNumber.of(this.contractModel.getNumber()), SignDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth()));
+		// return "redirect:/sales/view_contract?contractNumber=" + this.contractModel.getNumber();
+		return "redirect:/riskmanagement/contracts";
+
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
