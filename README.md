@@ -21,3 +21,18 @@ For the time being we’re wrestling with the module system, so we have to play 
     ```fish
     bin/enable-jigsaw.sh disable && mvn test && bin/enable-jigsaw.sh enable
     ```
+## Run
+
+Start the web app:
+
+```fish
+mvn -pl leasingninja-webapp spring-boot:run -Dspring-boot.run.jvmArguments=-enableassertions
+```
+
+You might want to see more logging:
+
+```fish
+mvn -pl leasingninja-webapp spring-boot:run -Dspring-boot.run.jvmArguments=-enableassertions -Dspring-boot.run.arguments=--logging.level.io.leasingninja=TRACE
+```
+
+Open `https://localhost:8080` in your browser.
