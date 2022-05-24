@@ -21,7 +21,14 @@ For the time being we’re wrestling with the module system, so we have to play 
     ```fish
     bin/enable-jigsaw.sh disable && mvn test && bin/enable-jigsaw.sh enable
     ```
+
 ## Run
+
+Install LeasingNinja to your Maven repository:
+
+```fish
+bin/enable-jigsaw.sh disable && mvn install && bin/enable-jigsaw.sh enable
+```
 
 Start the web app:
 
