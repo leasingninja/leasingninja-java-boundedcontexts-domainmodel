@@ -42,4 +42,4 @@ You might want to see more logging:
 mvn -pl leasingninja-webapp spring-boot:run -Dspring-boot.run.jvmArguments=-enableassertions -Dspring-boot.run.arguments=--logging.level.io.leasingninja=TRACE
 ```
 
-Open `https://localhost:8080` in your browser.
+Open <https://localhost:8080> in your browser.
