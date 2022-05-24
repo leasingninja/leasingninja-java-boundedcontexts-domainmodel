@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import io.leasingninja.riskmanagement.domain.*;
 import org.junit.jupiter.api.Test;
 
-public class ContractModelMapperTest {
+class ContractModelMapperTest {
 
     @Test
     void givenAnUnratedContract_whenMapped_thenUnvotedModel() {
