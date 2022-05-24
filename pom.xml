@@ -16,10 +16,11 @@
 	<properties>
 		<!-- Build -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>17</java.version>
+		<java.version>18</java.version>
 		<maven.compiler.version>3.8.1</maven.compiler.version>
 		<surefire.version>3.0.0-M5</surefire.version>
-        <!--	<surefire.version>2.22.2</surefire.version> -->
+		<failsafe.version>3.0.0-M5</failsafe.version>
+		<!--	<surefire.version>2.22.2</surefire.version> -->
 
 		<!-- Libraries -->
 		<jmolecules.version>1.4.0</jmolecules.version>
@@ -45,6 +46,14 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit.jupiter.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+	
 			<dependency>
 				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
@@ -110,13 +119,6 @@
 			<version>${gson.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
- 		<dependency>
- 			<groupId>org.junit.jupiter</groupId>
- 			<artifactId>junit-jupiter</artifactId>
- 			<version>${junit.jupiter.version}</version>
- 			<scope>test</scope>
- 		</dependency>
 
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.junit.platform</groupId> -->
@@ -214,7 +216,11 @@
 				</configuration>
 				 -->
 			</plugin>
-		</plugins>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${failsafe.version}</version>
+			</plugin>
+	</plugins>
 	</build>
 
 </project>
