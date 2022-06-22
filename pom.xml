@@ -23,7 +23,7 @@
 		<!--	<surefire.version>2.22.2</surefire.version> -->
 
 		<!-- Libraries -->
-		<jmolecules.version>1.4.0</jmolecules.version>
+		<jmolecules.version>1.6.0</jmolecules.version>
 		<dddbits.version>0.0.1</dddbits.version>
 		<spring.boot.version>2.7.0</spring.boot.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
