@@ -23,7 +23,17 @@ For the time being we’re wrestling with the module system, so we have to play 
     bin/enable-jigsaw.sh disable && ./mvnw test && bin/enable-jigsaw.sh enable
     ```
 
-## Run
+## Run with Docker
+
+Start the web app:
+
+```fish
+docker-compose up
+```
+
+Open <http://localhost:8080> in your browser.
+
+## Run without Docker
 
 Install LeasingNinja to your Maven repository:
 
