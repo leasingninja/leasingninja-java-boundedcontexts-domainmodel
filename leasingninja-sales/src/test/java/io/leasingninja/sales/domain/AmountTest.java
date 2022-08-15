@@ -68,4 +68,17 @@ class AmountTest {
         assertThat(amountString).isEqualTo("EUR 100.45");
     }
 
+    @Test
+    void givenTwoAmountsOfEurosAndCents_whenEquals_thenAreEqual() {
+        // given
+        var amount1 = Amount.of(100.45, "EUR");
+        var amount2 = Amount.ofCents(10045, "EUR");
+
+        // when
+        boolean areEqual = amount1.equals(amount2);
+
+        // then
+        assertThat(areEqual).isTrue();
+    }
+
 }
