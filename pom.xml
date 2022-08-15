@@ -25,15 +25,15 @@
 		<!-- Libraries -->
 		<jmolecules.version>1.6.0</jmolecules.version>
 		<dddbits.version>0.0.1</dddbits.version>
-		<spring.boot.version>2.7.1</spring.boot.version>
+		<spring.boot.version>2.7.2</spring.boot.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
-		<gson.version>2.9.0</gson.version>
+		<gson.version>2.9.1</gson.version>
 
 		<!-- Libraries for test -->
-		<junit.jupiter.version>5.8.2</junit.jupiter.version>
-		<junit.platform.version>1.8.2</junit.platform.version>
+		<junit.jupiter.version>5.9.0</junit.jupiter.version>
+		<junit.platform.version>1.9.0</junit.platform.version>
 		<assertj.version>3.23.1</assertj.version>
-		<mockito.version>4.6.1</mockito.version>
+		<mockito.version>4.7.0</mockito.version>
 		<archunit.version>0.23.1</archunit.version>
 	</properties>
 
@@ -53,7 +53,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-	
+
 			<dependency>
 				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
