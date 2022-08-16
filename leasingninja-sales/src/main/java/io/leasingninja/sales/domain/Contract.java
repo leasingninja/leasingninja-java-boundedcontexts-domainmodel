@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import org.jmolecules.ddd.annotation.Entity;
-//import org.jmolecules.ddd.annotation.Factory;
 import org.jmolecules.ddd.annotation.Identity;
 
 @Entity
@@ -13,24 +12,11 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	private final Customer lessee;
 	private final Car car;
 	private final Amount price;
-	
+
 	private Optional<Amount> installment;
 
 	private Optional<SignDate> signDate;
 
-	//@Factory TODO: extend jMolecules so that @Factory can annotate methods
-	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> signDate) {
-		requireNonNull(number);
-		requireNonNull(lessee);
-		requireNonNull(car);
-		requireNonNull(price);
-		
-		var contract = new Contract(number, lessee, car, price);
-		contract.signDate = signDate; // TODO: set directly here or replay with sign() ?
-
-		return contract;
-	}
-	
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
 		super(number);
 
@@ -38,7 +24,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 		requireNonNull(lessee);
 		requireNonNull(car);
 		requireNonNull(price);
-		
+
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
@@ -50,15 +36,15 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	public ContractNumber number() {
 		return identity();
 	}
-	
+
 	public Customer lessee() {
 		return lessee;
 	}
-	
+
 	public Car car() {
 		return car;
 	}
-	
+
 	public Amount price() {
 		return price;
 	}
@@ -95,21 +81,22 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	public void sign(SignDate date) {
 		requireNonNull(date);
 		assert !isSigned();
-		
+//        assert isCalculated();
+
 		this.signDate = Optional.of(date);
-		
+
 		assert isSigned();
 	}
 
 	public boolean isSigned() {
 		return this.signDate.isPresent();
 	}
-	
+
 	public SignDate signDate() {
 		assert isSigned();
 		return this.signDate.get();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Contract [number=" + number() + ", lessee=" + lessee + ", car=" + car

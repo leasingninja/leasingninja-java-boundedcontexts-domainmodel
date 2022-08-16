@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import io.leasingninja.sales.domain.Amount;
 import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.Contract;
+import io.leasingninja.sales.domain.ContractFactory;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Customer;
 import io.leasingninja.sales.domain.SignDate;
@@ -18,22 +19,22 @@ import io.leasingninja.sales.domain.SignDate;
 @Entity
 @Table(name = "contracts")
 public class ContractDatabaseEntity {
-	
+
 	@Id
 	private String number;
-	
+
 	private String lessee;
-	
+
 	private String car;
-	
+
 	@Column(name = "price_amount")
 	private long priceAmount;
-	
+
 	@Column(name = "price_currency")
 	private String priceCurrency;
-	
+
 	private LocalDate signDate;
-	
+
 	private ContractDatabaseEntity() {
 	}
 
@@ -51,8 +52,8 @@ public class ContractDatabaseEntity {
 	}
 
 	public Contract toContract() {
-		
-		return Contract.restore(
+
+		return ContractFactory.restore(
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
