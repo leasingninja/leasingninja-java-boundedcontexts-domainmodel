@@ -1,7 +1,7 @@
 //import io.hschwentner.dddbits.annotation.BoundedContext;
 
 /**
- * @author henning
+ * @author Henning Schwentner
  *
  */
 //@BoundedContext TODO: comment in again when DDDBITS support Java 9
@@ -12,10 +12,10 @@ module io.leasingninja.sales {
 
     // all layers
     requires org.slf4j;
-	
+    requires org.jmolecules.architecture.layered;
+
     // Domain Layer
     requires org.jmolecules.ddd;
-    requires io.hschwentner.dddbits;
     requires io.leasingninja.riskmanagement;
 
     // Application Layer

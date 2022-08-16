@@ -7,6 +7,8 @@ module io.leasingninja.riskmanagement {
 
 	requires org.slf4j;
 
+    requires org.jmolecules.architecture.layered;
+    requires org.jmolecules.ddd;
 	requires io.hschwentner.dddbits;
 
 	requires spring.beans;

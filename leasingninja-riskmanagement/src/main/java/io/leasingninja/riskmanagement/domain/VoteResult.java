@@ -1,6 +1,6 @@
 package io.leasingninja.riskmanagement.domain;
 
-import io.hschwentner.dddbits.annotation.ValueObject;
+import org.jmolecules.ddd.annotation.ValueObject;
 
 @ValueObject
 public enum VoteResult {

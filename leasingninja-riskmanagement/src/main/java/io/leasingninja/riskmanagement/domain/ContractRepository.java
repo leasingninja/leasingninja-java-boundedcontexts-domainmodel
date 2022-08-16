@@ -2,15 +2,15 @@ package io.leasingninja.riskmanagement.domain;
 
 import java.util.Collection;
 
-import io.hschwentner.dddbits.annotation.DomainRepository;
+import org.jmolecules.ddd.annotation.Repository;
 
-@DomainRepository
+@Repository
 public interface ContractRepository {
 
 	Contract findById(ContractNumber number);
-	
+
 	Collection<Contract> findAll();
-	
+
 	void save(Contract contract);
 
 }

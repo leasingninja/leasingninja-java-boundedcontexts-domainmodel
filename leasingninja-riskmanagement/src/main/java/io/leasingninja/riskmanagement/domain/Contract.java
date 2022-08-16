@@ -1,21 +1,26 @@
 package io.leasingninja.riskmanagement.domain;
 
-import io.hschwentner.dddbits.annotation.DomainEntity;
-import io.hschwentner.dddbits.annotation.Factory;
-import io.hschwentner.dddbits.basetype.Entity;
+import org.jmolecules.ddd.annotation.Entity;
+import org.jmolecules.ddd.annotation.Identity;
 
-@DomainEntity
-public class Contract extends Entity<ContractNumber> {
+@Entity
+public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber>  {
+
+    @Identity
+    private final ContractNumber number;
 
 	private CreditRating creditRating;
 	private VoteResult voteResult;
 
 	public Contract(ContractNumber number, SignDate signDate) { // TODO: do we need the signDate?
 		super(number);
+        assert number != null;
 		assert signDate != null;
+
+        this.number = number;
 	}
 
-	@Factory
+	//TODO: @Factory
 	public static Contract restore(ContractNumber nr, SignDate signDate, CreditRating rating, VoteResult voteResult) {
 		assert nr != null;
 		assert signDate != null;
@@ -26,13 +31,18 @@ public class Contract extends Entity<ContractNumber> {
 		restoredContract.voteResult = voteResult;
 		return restoredContract;
 	}
-	
+
+    @Identity
+    public ContractNumber number() {
+        return this.number;
+    }
+
 	public void checkCreditRating(CreditRating creditRating) {
 		assert creditRating != null;
 		assert !isVoted();
-		
+
 		this.creditRating = creditRating;
-		
+
 		assert isRated();
 	}
 
@@ -42,16 +52,16 @@ public class Contract extends Entity<ContractNumber> {
 
 	public CreditRating rating() {
 		assert isRated() : "Precondition violated: isRated()";
-		
+
 		return creditRating;
 	}
-	
+
 	public void vote(VoteResult result) {
 		assert result != null;
 		assert isRated(); // TODO: Decide DbC-Mechanism
-		
+
 		this.voteResult = result;
-		
+
 		assert isVoted();
 	}
 
@@ -61,8 +71,10 @@ public class Contract extends Entity<ContractNumber> {
 
 	public VoteResult votingResult() {
 		assert isVoted();
-		
+
 		return this.voteResult;
 	}
+
+    // TODO: equals() and hashCode()
 
 }

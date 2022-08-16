@@ -36,8 +36,9 @@ class ListContractsTest {
 
 		// when
 		var contracts = listContractsUnderTest.all();
-		
+
 		// then
+        // TODO: use refEq() to compare all fields
 		assertThat(contracts).isEqualTo(List.of(new Contract(
 				ContractNumber.of("4711"),
 				SignDate.of(2018, 4, 1))));

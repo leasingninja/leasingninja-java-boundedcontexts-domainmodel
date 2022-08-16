@@ -2,15 +2,18 @@ package io.leasingninja.riskmanagement.application;
 
 import static java.util.Objects.*;
 
+import org.jmolecules.architecture.layered.ApplicationLayer;
+import org.jmolecules.ddd.annotation.Service;
+
 import org.springframework.stereotype.Component;
 
-import io.hschwentner.dddbits.annotation.ApplicationService;
 import io.leasingninja.riskmanagement.domain.ContractNumber;
 import io.leasingninja.riskmanagement.domain.ContractRepository;
 import io.leasingninja.riskmanagement.domain.CreditRating;
 
 @Component
-@ApplicationService
+@ApplicationLayer
+@Service
 public class CheckCreditRating {
 
 	private final ContractRepository contracts;
