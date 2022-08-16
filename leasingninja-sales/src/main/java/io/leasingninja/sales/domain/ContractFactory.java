@@ -7,7 +7,7 @@ import org.jmolecules.ddd.annotation.Factory;
 @Factory
 public class ContractFactory {
 
-	public static Contract restore(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> optionalSignDate) {
+	public static Contract restoreContract(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> optionalSignDate) {
 		requireNonNull(number);
 		requireNonNull(lessee);
 		requireNonNull(car);

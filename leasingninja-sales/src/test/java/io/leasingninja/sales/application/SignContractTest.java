@@ -52,7 +52,7 @@ class SignContractTest {
 				SignDate.of(2018, 4, 12));
 
 		// Then
-		then(contractsMock).should().save(refEq(ContractFactory.restore(
+		then(contractsMock).should().save(refEq(ContractFactory.restoreContract(
 				ContractNumber.of("4711"),
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),

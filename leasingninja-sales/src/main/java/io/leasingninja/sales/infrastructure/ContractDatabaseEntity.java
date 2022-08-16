@@ -53,7 +53,7 @@ public class ContractDatabaseEntity {
 
 	public Contract toContract() {
 
-		return ContractFactory.restore(
+		return ContractFactory.restoreContract(
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
