@@ -16,14 +16,14 @@ public class Amount {
 
 	public static Amount of(double amount, String currency) {
 		assert currency != null;
-		
-		return new Amount(Math.round(amount * 100), currency);
+
+		return ofCents(Math.round(amount * 100), currency);
 	}
 
 	public static Amount ofCents(long amount, String currency) {
 		assert currency != null;
-		
-		return new Amount(amount * 100, currency);
+
+		return new Amount(amount, currency);
 	}
 
 	public double amount() {
