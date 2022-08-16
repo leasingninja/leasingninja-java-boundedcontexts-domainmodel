@@ -1,17 +1,17 @@
 /**
- * @author henning
+ * @author Henning Schwentner
  *
  */
 module io.leasingninja.riskmanagement {
 	exports io.leasingninja.riskmanagement.application;
-	
+
 	requires org.slf4j;
 
 	requires io.hschwentner.dddbits;
 
 	requires spring.beans;
 //	requires spring.core;
-	requires spring.context;	
+	requires spring.context;
 	requires spring.web;
 	requires spring.webmvc;
 //	requires spring.boot;
