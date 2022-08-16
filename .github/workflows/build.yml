@@ -16,10 +16,10 @@ jobs:
           java-version: '18'
           cache: maven
       - name: Build with Maven without tests
-        run: >
+        run:
           mvn --batch-mode --update-snapshots package -Dmaven.test.skip=true
       - name: Build with Maven without Jigsaw
-        run: >
+        run: |
           bin/enable-jigsaw.sh disable
           mvn --batch-mode --update-snapshots package
           bin/enable-jigsaw.sh enable
