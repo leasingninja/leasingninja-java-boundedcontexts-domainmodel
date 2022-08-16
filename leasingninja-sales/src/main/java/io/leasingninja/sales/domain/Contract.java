@@ -7,7 +7,10 @@ import org.jmolecules.ddd.annotation.Entity;
 import org.jmolecules.ddd.annotation.Identity;
 
 @Entity
-public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber> {
+public class Contract {
+
+    @Identity
+    private final ContractNumber number;
 
 	private final Customer lessee;
 	private final Car car;
@@ -18,13 +21,12 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	private Optional<SignDate> signDate;
 
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
-		super(number);
-
 		requireNonNull(number);
 		requireNonNull(lessee);
 		requireNonNull(car);
 		requireNonNull(price);
 
+        this.number = number;
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
@@ -34,7 +36,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 
 	@Identity
 	public ContractNumber number() {
-		return identity();
+		return number;
 	}
 
 	public Customer lessee() {
@@ -101,6 +103,29 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	public String toString() {
 		return "Contract [number=" + number() + ", lessee=" + lessee + ", car=" + car
 				+ ", price=" + price + ", signDate=" + signDate + "]";
+	}
+
+	@Override
+	public final int hashCode() {
+		return number.hashCode();
+	}
+
+	@Override
+	public final boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		@SuppressWarnings("rawtypes")
+		Contract other = (Contract) obj;
+		if (number == null) {
+			if (other.number() != null)
+				return false;
+		} else if (!number.equals(other.number()))
+			return false;
+		return true;
 	}
 
 }
