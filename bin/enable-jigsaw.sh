@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Renames module-info.java files to disable/enable the Java Module System.
 # Usage example: enable-jigsaw.sh disable
 
