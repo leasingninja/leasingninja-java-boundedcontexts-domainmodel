@@ -23,7 +23,8 @@
 		<!--	<surefire.version>2.22.2</surefire.version> -->
 
 		<!-- Libraries -->
-		<jmolecules.version>1.6.0</jmolecules.version>
+        <jmolecules.version>1.6.0</jmolecules.version>
+        <jmolecules-integrations.version>1.6.0</jmolecules-integrations.version>
 		<dddbits.version>0.0.1</dddbits.version>
 		<spring.boot.version>2.7.2</spring.boot.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
@@ -76,7 +77,13 @@
 			<artifactId>jmolecules-ddd</artifactId>
 			<version>${jmolecules.version}</version>
 		</dependency>
-		<dependency>
+        <dependency>
+            <groupId>org.jmolecules.integrations</groupId>
+            <artifactId>jmolecules-archunit</artifactId>
+            <version>${jmolecules-integrations.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
 			<groupId>io.hschwentner.dddbits</groupId>
 			<artifactId>dddbits</artifactId>
 			<version>${dddbits.version}</version>
