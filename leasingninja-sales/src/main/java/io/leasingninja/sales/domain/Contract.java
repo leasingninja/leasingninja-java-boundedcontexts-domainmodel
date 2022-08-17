@@ -118,7 +118,6 @@ public class Contract {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		@SuppressWarnings("rawtypes")
 		Contract other = (Contract) obj;
 		if (number == null) {
 			if (other.number() != null)
