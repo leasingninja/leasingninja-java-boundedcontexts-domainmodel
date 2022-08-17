@@ -7,14 +7,14 @@ import org.jmolecules.ddd.annotation.Factory;
 @Factory
 public class ContractFactory {
 
-	public static Contract restoreContract(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> optionalSignDate) {
+	public static Contract restoreContract(ContractNumber number, Customer lessee, Car car, Amount price, Optional<SignDate> signDate) {
 		requireNonNull(number);
 		requireNonNull(lessee);
 		requireNonNull(car);
 		requireNonNull(price);
 
 		var contract = new Contract(number, lessee, car, price);
-        optionalSignDate.ifPresent(signDate -> contract.sign(signDate));
+        signDate.ifPresent(contract::sign);
 
 		return contract;
 	}
