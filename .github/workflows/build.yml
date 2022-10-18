@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout source code
@@ -13,13 +13,13 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '18'
+          java-version: '19'
           cache: maven
       - name: Build with Maven without tests
         run:
-          mvn --batch-mode --update-snapshots package -Dmaven.test.skip=true
+          ./mvnw --batch-mode --update-snapshots package -Dmaven.test.skip=true
       - name: Build with Maven without Jigsaw
         run: |
           bin/enable-jigsaw.sh disable
-          mvn --batch-mode --update-snapshots package
+          ./mvnw --batch-mode --update-snapshots package
           bin/enable-jigsaw.sh enable
