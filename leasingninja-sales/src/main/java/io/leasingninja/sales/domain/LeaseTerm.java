@@ -7,4 +7,8 @@ public record LeaseTerm(int noOfMonths) {
     public static LeaseTerm ofMonths(int noOfMonths) {
         return new LeaseTerm(noOfMonths);
     }
+
+    public static LeaseTerm ofYears(int noOfYears) {
+        return new LeaseTerm(noOfYears * 12);
+    }
 }
