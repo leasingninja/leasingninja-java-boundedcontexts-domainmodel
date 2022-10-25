@@ -10,16 +10,15 @@ public class UnterschreibeVertragApplicationService_MitEvent extends SubmissionP
 
 	public void fuelleVertragsformularAus(String vertragsnummer, String kundenname, String fahrzeug, int preis, String waehrung) {
 		new Contract(
-				ContractNumber.of(vertragsnummer), 
-				Customer.of(kundenname), 
+				ContractNumber.of(vertragsnummer),
+				Customer.of(kundenname),
 				Car.of(fahrzeug),
-				Amount.of(preis, waehrung));
-		
+				Amount.of(preis, Currency.valueOf(waehrung)));
 	}
-	
+
 	public void unterschreibeVertrag(String vnr, String unterschriftsdatum) {
 		// TODO Auto-generated method stub
-		
+
 		submit(new ContractSigned());
 	}
 

@@ -17,12 +17,13 @@ import io.leasingninja.sales.application.ViewContract;
 import io.leasingninja.sales.domain.Amount;
 import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.ContractNumber;
+import io.leasingninja.sales.domain.Currency;
 import io.leasingninja.sales.domain.Customer;
 import io.leasingninja.sales.domain.SignDate;
 
 @Controller
 public class SalesController {
-	
+
     private static Logger logger = LoggerFactory.getLogger(SalesController.class);
 
 	private final FilloutContract filloutContract;
@@ -42,20 +43,20 @@ public class SalesController {
 	public String viewContract(
 			@RequestParam(name="contractNumber", required = false) String contractNumberString,
 			Model model) {
-//		var vertrag = 
-//				vertragsnummer != null 
+//		var vertrag =
+//				vertragsnummer != null
 //				? this.vertragService.liesVertrag(vertragsnummer) : null;
-//		var vertragModel = 
-//				vertrag != null 
+//		var vertragModel =
+//				vertrag != null
 //						? VertragModelMapper.modelFrom(vertrag)
 //						: new VertragModel();
 //		model.addAttribute("vertrag", vertragModel);
 //		logger.debug("VertriebController: vertragnummer:" + vertragModel.nummer);
 //		model.addAttribute("editing_disabled", !vertrag.isUnterschrieben());
 //		return "fillout_contract";
-		
+
 		logger.debug("Trying to show contract " + contractNumberString);
-		
+
 		model.addAttribute("contract", new ContractModel());
 		model.addAttribute("editing_disabled", false);
 		if (contractNumberString != null) {
@@ -67,15 +68,14 @@ public class SalesController {
 			logger.trace("editing_disabled: " + contract.isSigned());
 		}
 		return "contractView";
-			
 	}
 
 //	@GetMapping("/sales/view_contract")
 //	public String viewContract(
 //			@RequestParam(name="vertragsnummer", required = false) String vertragsnummer,
 //			Model model) {
-//		VertragModel vertragModel = 
-//				vertragsnummer != null ? 
+//		VertragModel vertragModel =
+//				vertragsnummer != null ?
 //						this.vertragService.liesVertrag(vertragsnummer) :
 //						new VertragModel();
 //		model.addAttribute("vertrag", vertragModel);
@@ -92,11 +92,12 @@ public class SalesController {
 			@RequestParam(name="price_amount") int priceAmount,
 			@RequestParam(name="price_currency") String priceCurrency,
 			Model model) {
+        //TODO: Check that priceCurrency is a valid Currency()
 		this.filloutContract.with(
-				ContractNumber.of(contractNumberString), 
-				Customer.of(lesseeString), 
+				ContractNumber.of(contractNumberString),
+				Customer.of(lesseeString),
 				Car.of(carString),
-				Amount.of(priceAmount, priceCurrency));
+				Amount.of(priceAmount, Currency.valueOf(priceCurrency)));
 		return "redirect:/sales/view_contract?contractNumber=" + contractNumberString;
 	}
 

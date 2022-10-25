@@ -8,13 +8,13 @@ class ContractModelMapper {
 
 	public static ContractModel modelFrom(Contract contract) {
 		Objects.requireNonNull(contract);
-		
+
 		return new ContractModel(
 				contract.number().value(),
 				contract.lessee().value(),
 				contract.car().value(),
 				contract.price().amount(),
-				contract.price().currency());
+				contract.price().currency().name());
 	}
 
 }

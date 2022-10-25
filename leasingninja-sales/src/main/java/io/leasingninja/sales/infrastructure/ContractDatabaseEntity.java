@@ -13,6 +13,7 @@ import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractFactory;
 import io.leasingninja.sales.domain.ContractNumber;
+import io.leasingninja.sales.domain.Currency;
 import io.leasingninja.sales.domain.Customer;
 import io.leasingninja.sales.domain.SignDate;
 
@@ -54,10 +55,11 @@ public class ContractDatabaseEntity {
 	public Contract toContract() {
 
 		return ContractFactory.restoreContract(
+                // TODO: check that priceCurrency is a real Currency
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
-				Amount.of(priceAmount, priceCurrency),
+				Amount.of(priceAmount, Currency.valueOf(priceCurrency)),
 				signDate != null
 					? Optional.of(SignDate.of(signDate))
 					: Optional.empty());

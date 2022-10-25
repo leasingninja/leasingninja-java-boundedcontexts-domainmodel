@@ -14,11 +14,6 @@ public class Amount {
 		this.currency = currency;
 	}
 
-    @Deprecated
-	public static Amount of(double amount, String currencyString) {
-        return of(amount, Currency.valueOf(currencyString));
-    }
-
 	public static Amount of(double amount, Currency currency) {
 		assert currency != null;
 
