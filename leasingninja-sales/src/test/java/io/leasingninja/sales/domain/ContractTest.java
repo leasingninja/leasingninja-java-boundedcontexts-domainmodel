@@ -41,12 +41,13 @@ class ContractTest {
 	}
 
 	@Test
-	void givenANewContract_whenSign_thenContractIsSigned() {
+	void givenACalculatedContract_whenSign_thenContractIsSigned() {
 		// given
 		var contract = new Contract(ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
 				Amount.of(20_000, Currency.EUR));
+        contract.calculateInstallmentFor(LeaseTerm.ofMonths(48), Interest.of(3.7));
 
 		// when
 		contract.sign(SignDate.of(2018, 12, 24));
