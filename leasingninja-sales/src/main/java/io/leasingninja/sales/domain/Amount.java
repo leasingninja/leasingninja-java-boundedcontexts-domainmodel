@@ -7,20 +7,25 @@ import org.jmolecules.ddd.annotation.ValueObject;
 public class Amount {
 
 	private final long amountInCents;
-	private final String currency; // TODO: Change from String to Currency
+	private final Currency currency; // TODO: Change from String to Currency
 
-	private Amount(long amountInCents, String currency) {
+	private Amount(long amountInCents, Currency currency) {
 		this.amountInCents = amountInCents;
 		this.currency = currency;
 	}
 
-	public static Amount of(double amount, String currency) {
+    @Deprecated
+	public static Amount of(double amount, String currencyString) {
+        return of(amount, Currency.valueOf(currencyString));
+    }
+
+	public static Amount of(double amount, Currency currency) {
 		assert currency != null;
 
 		return ofCents(Math.round(amount * 100), currency);
 	}
 
-	public static Amount ofCents(long amount, String currency) {
+	public static Amount ofCents(long amount, Currency currency) {
 		assert currency != null;
 
 		return new Amount(amount, currency);
@@ -34,7 +39,7 @@ public class Amount {
 		return amountInCents;
 	}
 
-	public String currency() {
+	public Currency currency() {
 		return currency;
 	}
 
