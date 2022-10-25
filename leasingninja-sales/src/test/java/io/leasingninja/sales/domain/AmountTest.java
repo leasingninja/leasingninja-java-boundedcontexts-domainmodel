@@ -61,6 +61,7 @@ class AmountTest {
     void givenAnAmountsWithCents_whenToString_thenAfterThePointIsCorrectlyPrinted() {
         // given
         var amount = Amount.of(100.45, Currency.EUR);
+
         // when
         String amountString = amount.toString();
 
