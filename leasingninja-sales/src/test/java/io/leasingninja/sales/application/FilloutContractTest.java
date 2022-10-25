@@ -15,6 +15,7 @@ import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Contracts;
+import io.leasingninja.sales.domain.Currency;
 import io.leasingninja.sales.domain.Customer;
 
 @ExtendWith(MockitoExtension.class)
@@ -22,7 +23,7 @@ class FilloutContractTest {
 
 	@Mock
 	private Contracts contractsMock;
-	
+
 	@InjectMocks
 	private FilloutContract filloutContractUnderTest;
 
@@ -35,15 +36,15 @@ class FilloutContractTest {
 				ContractNumber.of("4711"),
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),
-				Amount.of(10_000, "EUR"));
-		
-		
+				Amount.of(10_000, Currency.EUR));
+
+
 		// Then
 		then(contractsMock).should().save(refEq(new Contract(
 				ContractNumber.of("4711"),
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),
-				Amount.of(10_000,  "EUR"))));
+				Amount.of(10_000,  Currency.EUR))));
 	}
 
 }

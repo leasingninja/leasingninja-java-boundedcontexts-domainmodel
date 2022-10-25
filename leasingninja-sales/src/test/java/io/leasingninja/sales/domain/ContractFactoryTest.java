@@ -17,14 +17,14 @@ public class ContractFactoryTest {
 				ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
-				Amount.of(20_000, "EUR"),
+				Amount.of(20_000, Currency.EUR),
 				Optional.of(SignDate.of(2018, 04, 12)));
 
 		// then
 		assertThat(contract.number()).isEqualTo(ContractNumber.of("4711"));
 		assertThat(contract.lessee()).isEqualTo(Customer.of("John Buyer"));
 		assertThat(contract.car()).isEqualTo(Car.of("Mercedes Benz C-Class"));
-		assertThat(contract.price()).isEqualTo(Amount.of(20_000, "EUR"));
+		assertThat(contract.price()).isEqualTo(Amount.of(20_000, Currency.EUR));
 		assertThat(contract.isSigned()).isEqualTo(true);
 		// check that event ContractSigned is fired
 	}

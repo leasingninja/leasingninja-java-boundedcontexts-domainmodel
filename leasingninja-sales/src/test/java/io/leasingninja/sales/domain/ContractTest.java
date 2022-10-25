@@ -14,14 +14,14 @@ class ContractTest {
 		var contract = new Contract(ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Volkswagen ID.3"),
-				Amount.of(40_000, "EUR"));
+				Amount.of(40_000, Currency.EUR));
 
 		// when
 		contract.calculateInstallmentFor(LeaseTerm.ofMonths(48), Interest.of(3.7));
 
 		// then
 		assertThat(contract.isCalculated()).isTrue();
-		assertThat(contract.installment()).isEqualTo(Amount.of(897.80, "EUR"));
+		assertThat(contract.installment()).isEqualTo(Amount.of(897.80, Currency.EUR));
 	}
 
 	@Test
@@ -30,14 +30,14 @@ class ContractTest {
 		var contract = new Contract(ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Volkswagen ID.3"),
-				Amount.of(40_000, "EUR"));
+				Amount.of(40_000, Currency.EUR));
 
 		// when
 		contract.calculateInstallmentFor(LeaseTerm.ofMonths(48), Interest.of(0));
 
 		// then
 		assertThat(contract.isCalculated()).isTrue();
-		assertThat(contract.installment()).isEqualTo(Amount.of(833.33, "EUR"));
+		assertThat(contract.installment()).isEqualTo(Amount.of(833.33, Currency.EUR));
 	}
 
 	@Test
@@ -46,7 +46,7 @@ class ContractTest {
 		var contract = new Contract(ContractNumber.of("4711"),
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
-				Amount.of(20_000, "EUR"));
+				Amount.of(20_000, Currency.EUR));
 
 		// when
 		contract.sign(SignDate.of(2018, 12, 24));

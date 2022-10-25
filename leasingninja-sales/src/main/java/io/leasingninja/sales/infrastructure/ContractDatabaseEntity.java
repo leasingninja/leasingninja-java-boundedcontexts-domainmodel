@@ -44,7 +44,7 @@ public class ContractDatabaseEntity {
 		dbEntity.lessee = contract.lessee().value();
 		dbEntity.car = contract.car().value();
 		dbEntity.priceAmount = contract.price().amountInCents();
-		dbEntity.priceCurrency = contract.price().currency();
+		dbEntity.priceCurrency = contract.price().currency().name();
 		if(contract.isSigned()) {
 			dbEntity.signDate = contract.signDate().value();
 		}

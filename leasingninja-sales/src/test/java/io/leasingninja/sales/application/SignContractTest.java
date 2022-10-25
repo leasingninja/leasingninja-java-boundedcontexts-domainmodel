@@ -20,6 +20,7 @@ import io.leasingninja.sales.domain.Contract;
 import io.leasingninja.sales.domain.ContractFactory;
 import io.leasingninja.sales.domain.ContractNumber;
 import io.leasingninja.sales.domain.Contracts;
+import io.leasingninja.sales.domain.Currency;
 import io.leasingninja.sales.domain.Customer;
 import io.leasingninja.sales.domain.SignDate;
 
@@ -42,7 +43,7 @@ class SignContractTest {
 				ContractNumber.of("4711"),
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),
-				Amount.of(10_000, "EUR"));
+				Amount.of(10_000, Currency.EUR));
 		given(contractsMock.with(ContractNumber.of("4711"))).willReturn(contract);
 
 		// When
@@ -56,7 +57,7 @@ class SignContractTest {
 				ContractNumber.of("4711"),
 				Customer.of("Bob Smith"),
 				Car.of("Mercedes Benz E-Class"),
-				Amount.of(10_000,  "EUR"),
+				Amount.of(10_000,  Currency.EUR),
 				Optional.of(SignDate.of(2018, 04, 12)))));
 //		then(inboxApplicationServiceMock).should().meldeUnterschriebenenVertrag("4711", "2018-04-12");
 		then(inboxApplicationServiceMock).should().confirmSignedContract("4711", 2018, 04, 12);
