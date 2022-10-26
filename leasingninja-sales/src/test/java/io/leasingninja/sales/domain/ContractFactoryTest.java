@@ -18,6 +18,8 @@ public class ContractFactoryTest {
 				Customer.of("John Buyer"),
 				Car.of("Mercedes Benz C-Class"),
 				Amount.of(20_000, Currency.EUR),
+                Optional.of(LeaseTerm.ofMonths(48)),
+                Optional.of(Interest.of(3.6)),
 				Optional.of(SignDate.of(2018, 04, 12)));
 
 		// then
