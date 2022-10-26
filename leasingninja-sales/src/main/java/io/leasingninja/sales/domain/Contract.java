@@ -1,6 +1,7 @@
 package io.leasingninja.sales.domain;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import org.jmolecules.ddd.annotation.Entity;
@@ -16,12 +17,15 @@ public class Contract {
 	private final Car car;
 	private final Amount price;
 
+    // TODO: put these three values into new type Calculation ??
+    private Optional<LeaseTerm> leaseTerm;
+    private Optional<Interest> interest;
 	private Optional<Amount> installment;
 
 	private Optional<SignDate> signDate;
 
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
-		requireNonNull(number);
+        requireNonNull(number);
 		requireNonNull(lessee);
 		requireNonNull(car);
 		requireNonNull(price);
@@ -36,15 +40,15 @@ public class Contract {
 
 	@Identity
 	public ContractNumber number() {
-		return number;
+        return number;
 	}
 
 	public Customer lessee() {
-		return lessee;
+        return lessee;
 	}
 
 	public Car car() {
-		return car;
+        return car;
 	}
 
 	public Amount price() {
@@ -60,6 +64,9 @@ public class Contract {
 		requireNonNull(interest);
 		assert !isSigned();
 
+        this.leaseTerm = Optional.of(leaseTerm);
+        this.interest = Optional.of(interest);
+
 		double inAdvance = 0;
 		double residualValue = 0;
 
@@ -70,10 +77,20 @@ public class Contract {
 			residualValue,
 			inAdvance);
 
-		installment = Optional.of(Amount.of(pmt, price.currency()));
+		this.installment = Optional.of(Amount.of(pmt, price.currency()));
 
 		assert isCalculated();
 	}
+
+    public LeaseTerm leaseTerm() {
+    	assert isCalculated();
+	    return leaseTerm.get();
+    }
+
+    public Interest interest() {
+    	assert isCalculated();
+	    return interest.get();
+    }
 
 	public Amount installment() {
 		assert isCalculated();
@@ -83,7 +100,7 @@ public class Contract {
 	public void sign(SignDate date) {
 		requireNonNull(date);
 		assert !isSigned();
-//        assert isCalculated();
+        assert isCalculated();
 
 		this.signDate = Optional.of(date);
 

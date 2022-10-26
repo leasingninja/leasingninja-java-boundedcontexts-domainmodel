@@ -21,6 +21,8 @@ class ContractTest {
 
 		// then
 		assertThat(contract.isCalculated()).isTrue();
+		assertThat(contract.leaseTerm()).isEqualTo(LeaseTerm.ofMonths(48));
+		assertThat(contract.interest()).isEqualTo(Interest.of(3.7));
 		assertThat(contract.installment()).isEqualTo(Amount.of(897.80, Currency.EUR));
 	}
 
