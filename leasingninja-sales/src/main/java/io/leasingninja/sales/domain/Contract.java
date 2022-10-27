@@ -18,10 +18,12 @@ public class Contract {
 	private final Amount price;
 
     // TODO: put these three values into new type Calculation ??
-    private Optional<LeaseTerm> leaseTerm;
+	private record Calculation(LeaseTerm leaseTerm, Interest interest, Amount installment) {}
+    private Optional<Calculation> calculation;
+/*    private Optional<LeaseTerm> leaseTerm;
     private Optional<Interest> interest;
 	private Optional<Amount> installment;
-
+*/
 	private Optional<SignDate> signDate;
 
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
@@ -34,7 +36,7 @@ public class Contract {
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
-		this.installment = Optional.empty();
+		this.calculation = Optional.empty();
 		this.signDate = Optional.empty();
 	}
 
@@ -56,16 +58,13 @@ public class Contract {
 	}
 
 	public boolean isCalculated() {
-		return installment.isPresent();
+		return calculation.isPresent();
 	}
 
 	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
 		requireNonNull(leaseTerm);
 		requireNonNull(interest);
 		assert !isSigned();
-
-        this.leaseTerm = Optional.of(leaseTerm);
-        this.interest = Optional.of(interest);
 
 		double inAdvance = 0;
 		double residualValue = 0;
@@ -77,24 +76,24 @@ public class Contract {
 			residualValue,
 			inAdvance);
 
-		this.installment = Optional.of(Amount.of(pmt, price.currency()));
+		this.calculation = Optional.of(new Calculation(leaseTerm, interest, Amount.of(pmt, price.currency())));
 
 		assert isCalculated();
 	}
 
     public LeaseTerm leaseTerm() {
     	assert isCalculated();
-	    return leaseTerm.get();
+	    return calculation.get().leaseTerm();
     }
 
     public Interest interest() {
     	assert isCalculated();
-	    return interest.get();
+	    return calculation.get().interest();
     }
 
 	public Amount installment() {
 		assert isCalculated();
-		return installment.get();
+		return calculation.get().installment();
 	}
 
 	public void sign(SignDate date) {
