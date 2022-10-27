@@ -17,14 +17,10 @@ public class Contract {
 	private final Car car;
 	private final Amount price;
 
-    // TODO: put these three values into new type Calculation ??
 	private record Calculation(LeaseTerm leaseTerm, Interest interest, Amount installment) {}
     private Optional<Calculation> calculation;
-/*    private Optional<LeaseTerm> leaseTerm;
-    private Optional<Interest> interest;
-	private Optional<Amount> installment;
-*/
-	private Optional<SignDate> signDate;
+
+    private Optional<SignDate> signDate;
 
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
         requireNonNull(number);
