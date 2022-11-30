@@ -27,7 +27,8 @@ public class ContractFactoryTest {
 		assertThat(contract.lessee()).isEqualTo(Customer.of("John Buyer"));
 		assertThat(contract.car()).isEqualTo(Car.of("Mercedes Benz C-Class"));
 		assertThat(contract.price()).isEqualTo(Amount.of(20_000, Currency.EUR));
-		assertThat(contract.isSigned()).isEqualTo(true);
+		assertThat(contract.isCalculated()).isTrue();
+		assertThat(contract.isSigned()).isTrue();
 		// check that event ContractSigned is fired
 	}
 
