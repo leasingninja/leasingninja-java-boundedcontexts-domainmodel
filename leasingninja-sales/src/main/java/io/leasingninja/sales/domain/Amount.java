@@ -20,10 +20,10 @@ public class Amount {
 		return ofCents(Math.round(amount * 100), currency);
 	}
 
-	public static Amount ofCents(long amount, Currency currency) {
+	public static Amount ofCents(long amountInCents, Currency currency) {
 		assert currency != null;
 
-		return new Amount(amount, currency);
+		return new Amount(amountInCents, currency);
 	}
 
 	public double amount() {

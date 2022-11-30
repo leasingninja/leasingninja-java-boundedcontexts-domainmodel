@@ -38,23 +38,23 @@ public class Contract {
 
 	@Identity
 	public ContractNumber number() {
-        return number;
+        return this.number;
 	}
 
 	public Customer lessee() {
-        return lessee;
+        return this.lessee;
 	}
 
 	public Car car() {
-        return car;
+        return this.car;
 	}
 
 	public Amount price() {
-		return price;
+		return this.price;
 	}
 
 	public boolean isCalculated() {
-		return calculation.isPresent();
+		return this.calculation.isPresent();
 	}
 
 	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
@@ -68,7 +68,7 @@ public class Contract {
 		double pmt = FinancialCalculator.pmt(
 			leaseTerm.noOfMonths(),
 			interest.perMonth(),
-			-1 * price.amount(),
+			-1 * price().amount(),
 			residualValue,
 			inAdvance);
 
@@ -79,17 +79,17 @@ public class Contract {
 
     public LeaseTerm leaseTerm() {
     	assert isCalculated();
-	    return calculation.get().leaseTerm();
+	    return this.calculation.get().leaseTerm();
     }
 
     public Interest interest() {
     	assert isCalculated();
-	    return calculation.get().interest();
+	    return this.calculation.get().interest();
     }
 
 	public Amount installment() {
 		assert isCalculated();
-		return calculation.get().installment();
+		return this.calculation.get().installment();
 	}
 
 	public void sign(SignDate date) {
@@ -113,13 +113,13 @@ public class Contract {
 
 	@Override
 	public String toString() {
-		return "Contract [number=" + number() + ", lessee=" + lessee + ", car=" + car
-				+ ", price=" + price + ", signDate=" + signDate + "]";
+		return "Contract [number=" + number() + ", lessee=" + this.lessee + ", car=" + this.car
+				+ ", price=" + this.price + ", signDate=" + this.signDate + "]";
 	}
 
 	@Override
 	public final int hashCode() {
-		return number.hashCode();
+		return this.number.hashCode();
 	}
 
 	@Override
@@ -131,10 +131,10 @@ public class Contract {
 		if (getClass() != obj.getClass())
 			return false;
 		Contract other = (Contract) obj;
-		if (number == null) {
+		if (this.number == null) {
 			if (other.number() != null)
 				return false;
-		} else if (!number.equals(other.number()))
+		} else if (!this.number.equals(other.number()))
 			return false;
 		return true;
 	}
