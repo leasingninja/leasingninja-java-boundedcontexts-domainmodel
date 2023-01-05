@@ -40,7 +40,7 @@ public class Amount {
 
 	@Override
 	public String toString() {
-		return currency + " " + amount();
+		return currency() + " " + amount();
 	}
 
 	@Override
