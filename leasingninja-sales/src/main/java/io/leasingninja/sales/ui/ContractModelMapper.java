@@ -10,9 +10,9 @@ class ContractModelMapper {
 		Objects.requireNonNull(contract);
 
 		return new ContractModel(
-				contract.number().value(),
-				contract.lessee().value(),
-				contract.car().value(),
+				contract.number().number(),
+				contract.lessee().customer(),
+				contract.car().car(),
 				contract.price().amount(),
 				contract.price().currency().name());
 	}

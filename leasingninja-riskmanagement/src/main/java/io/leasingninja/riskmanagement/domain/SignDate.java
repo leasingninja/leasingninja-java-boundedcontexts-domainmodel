@@ -1,15 +1,11 @@
 package io.leasingninja.riskmanagement.domain;
 
-import io.hschwentner.dddbits.basetype.TinyDateType;
+import java.time.LocalDate;
 
-public final class SignDate extends TinyDateType {
+public record SignDate(LocalDate date) {
 
-	private SignDate(int year, int month, int dayOfMonth) {
-		super(year, month, dayOfMonth);
-	}
-	
 	public static SignDate of(int year, int month, int dayOfMonth) {
-		return new SignDate(year, month, dayOfMonth);
+		return new SignDate(LocalDate.of(year, month, dayOfMonth));
 	}
 
 }

@@ -3,27 +3,31 @@ package io.leasingninja.sales.domain;
 import java.time.LocalDate;
 
 import org.jmolecules.ddd.annotation.ValueObject;
-import io.hschwentner.dddbits.basetype.TinyDateType;
 
 @ValueObject
-public final class SignDate extends TinyDateType {
+public record SignDate(LocalDate date) {
 
 	// TODO: both of() variants?
 	public static SignDate of(LocalDate date) {
 		assert date != null;
 		return new SignDate(date);
 	}
-	
+
 	public static SignDate of(int year, int month, int dayOfMonth) {
-		return new SignDate(year, month, dayOfMonth);
-	}
-	
-	private SignDate(LocalDate date) {
-		super(date);
+		return of(LocalDate.of(year, month, dayOfMonth));
 	}
 
-	private SignDate(int year, int month, int dayOfMonth) {
-		super(year, month, dayOfMonth);
+    // TODO: year() vs. getYear im Domain Model?
+	public final int year() {
+		return date.getYear();
+	}
+
+	public final int month() {
+		return date.getMonthValue();
+	}
+
+	public final int day() {
+		return date.getDayOfMonth();
 	}
 
 }

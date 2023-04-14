@@ -7,7 +7,7 @@ import io.leasingninja.sales.domain.Contracts;
 public class ContractsJpaImpl implements Contracts {
 
 	private final ContractDatabaseEntityRepository repo;
-	
+
 	public ContractsJpaImpl(ContractDatabaseEntityRepository repo) {
 		this.repo = repo;
 	}
@@ -19,7 +19,7 @@ public class ContractsJpaImpl implements Contracts {
 
 	@Override
 	public Contract with(ContractNumber number) {
-		return repo.findById(number.value()).get().toContract();
+		return repo.findById(number.number()).get().toContract();
 	}
 
 }

@@ -16,18 +16,18 @@ public class SignContract {
 		this.contracts = contracts;
 		this.riskmanagementInbox = riskmanagementInbox;
 	}
-	
+
 	public void with(ContractNumber number, SignDate signDate) {
 		assert number != null;
 		assert signDate != null;
 
 		var contract = this.contracts.with(number);
-		
+
 		contract.sign(signDate);
-		
+
 		this.contracts.save(contract);
-		
-		riskmanagementInbox.confirmSignedContract(number.value(), signDate.year(), signDate.month(), signDate.day());
+
+		riskmanagementInbox.confirmSignedContract(number.number(), signDate.year(), signDate.month(), signDate.day());
 	}
 
 }

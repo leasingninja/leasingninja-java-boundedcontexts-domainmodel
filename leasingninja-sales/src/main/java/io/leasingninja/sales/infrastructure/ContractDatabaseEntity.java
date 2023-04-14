@@ -47,9 +47,9 @@ public class ContractDatabaseEntity {
 
 	public static ContractDatabaseEntity from(Contract contract) {
 		var dbEntity = new ContractDatabaseEntity();
-		dbEntity.number = contract.number().value();
-		dbEntity.lessee = contract.lessee().value();
-		dbEntity.car = contract.car().value();
+		dbEntity.number = contract.number().number();
+		dbEntity.lessee = contract.lessee().customer();
+		dbEntity.car = contract.car().car();
 		dbEntity.priceAmount = contract.price().amountInCents();
 		dbEntity.priceCurrency = contract.price().currency().name();
         if(contract.isCalculated()) {
@@ -57,7 +57,7 @@ public class ContractDatabaseEntity {
             dbEntity.interestPerYear = contract.interest().perYear();
         }
         if(contract.isSigned()) {
-			dbEntity.signDate = contract.signDate().value();
+			dbEntity.signDate = contract.signDate().date();
 		}
 		return dbEntity;
 	}
