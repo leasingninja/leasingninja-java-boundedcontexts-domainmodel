@@ -30,10 +30,10 @@ module io.leasingninja.sales {
     requires org.mapstruct;
     opens io.leasingninja.sales.application to org.mapstruct;
     requires transitive java.sql;
-    requires transitive java.annotation;
+    requires transitive jakarta.annotation;
 
     // Infrastructure Layer
-    requires java.persistence;
+    requires jakarta.persistence;
 //    requires java.xml.bind;
     requires spring.data.commons;
 //    requires spring.data.jpa;
