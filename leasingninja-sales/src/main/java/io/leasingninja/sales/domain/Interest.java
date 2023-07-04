@@ -14,4 +14,9 @@ public record Interest(double perYear) {
     public double perMonth() {
         return perYear() / 12;
     }
+
+    @Override
+    public String toString() {
+        return "Interest [" + perYear() + "% p.a.]";
+    }
 }
