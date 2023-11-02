@@ -5,44 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AmountTest {
-    @Test
-    void givenTwoEqualAmounts_whenEquals_thenAreEqual() {
-        // given
-        var amount1 = Amount.of(100, Currency.EUR);
-        var amount2 = Amount.of(100, Currency.EUR);
 
-        // when
-        boolean areEqual = amount1.equals(amount2);
-
-        // then
-        assertThat(areEqual).isTrue();
-    }
-
-    @Test
-    void givenTwoUnequalAmounts_whenEquals_thenAreNotEqual() {
-        // given
-        var amount1 = Amount.of(100, Currency.EUR);
-        var amount2 = Amount.of(200, Currency.EUR);
-
-        // when
-        boolean areEqual = amount1.equals(amount2);
-
-        // then
-        assertThat(areEqual).isFalse();
-    }
-
-    @Test
-    void givenTwoAmountsWithUnequalCurrencies_whenEquals_thenAreNotEqual() {
-        // given
-        var amount1 = Amount.of(100, Currency.EUR);
-        var amount2 = Amount.of(100, Currency.GBP);
-
-        // when
-        boolean areEqual = amount1.equals(amount2);
-
-        // then
-        assertThat(areEqual).isFalse();
-    }
+    /*
+     * We don’t need to test equals() here, since we’re using records.
+     * Please compare the following project to get an idea of what
+     * is required for versions without record types:
+     * https://github.com/leasingninja/leasingninja-javabefore14-boundedcontexts-domainmodel
+     */
 
     @Test
     void givenTwoAmountsWithRoundingAfterThePoint_whenEquals_thenAreEqual() {
