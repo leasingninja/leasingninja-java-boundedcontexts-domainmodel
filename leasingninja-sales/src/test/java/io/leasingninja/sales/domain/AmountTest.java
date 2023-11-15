@@ -51,4 +51,29 @@ class AmountTest {
         assertThat(areEqual).isTrue();
     }
 
+    @Test
+    void givenTwoAmounts_whenAdd_thenSumIsCorrect() {
+        // given
+        var amount1 = Amount.of(100, Currency.EUR);
+        var amount2 = Amount.of(200, Currency.EUR);
+
+        // when
+        var sum = amount1.add(amount2);
+
+        // then
+        assertThat(sum).isEqualTo(Amount.of(300, Currency.EUR));
+    }
+
+    @Test
+    void givenTwoAmounts_whenSubtract_thenDifferenceIsCorrect() {
+        // given
+        var amount1 = Amount.of(300, Currency.EUR);
+        var amount2 = Amount.of(200, Currency.EUR);
+
+        // when
+        var sum = amount1.subtract(amount2);
+
+        // then
+        assertThat(sum).isEqualTo(Amount.of(100, Currency.EUR));
+    }
 }

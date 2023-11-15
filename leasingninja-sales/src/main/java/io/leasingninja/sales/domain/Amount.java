@@ -18,9 +18,21 @@ public record Amount(long amountInCents, Currency currency) {
 		return new Amount(amountInCents, currency);
 	}
 
-	public double amount() {
+    public double amount() {
 		return amountInCents / 100d;
 	}
+
+    public Amount add(Amount otherAmount) {
+        assert this.currency == otherAmount.currency;
+
+        return ofCents(this.amountInCents + otherAmount.amountInCents, this.currency);
+    }
+
+    public Amount subtract(Amount otherAmount) {
+        assert this.currency == otherAmount.currency;
+
+        return ofCents(this.amountInCents - otherAmount.amountInCents, this.currency);
+    }
 
     @Override
 	public String toString() {
