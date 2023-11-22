@@ -7,6 +7,10 @@ import org.jmolecules.ddd.annotation.ValueObject;
  */
 @ValueObject
 public record Interest(double perYear) {
+    public Interest {
+        assert perYear >= 0;
+    }
+
     public static Interest of(double perYear) {
         return new Interest(perYear);
     }
