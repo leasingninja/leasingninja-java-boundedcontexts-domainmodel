@@ -17,24 +17,24 @@
 		<!-- Build -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>22</java.version>
-		<maven.compiler.version>3.11.0</maven.compiler.version>
-		<surefire.version>3.2.1</surefire.version>
-		<failsafe.version>3.2.1</failsafe.version>
+		<maven.compiler.version>3.13.0</maven.compiler.version>
+		<surefire.version>3.2.5</surefire.version>
+		<failsafe.version>3.2.5</failsafe.version>
 
 		<!-- Libraries -->
         <jmolecules.version>1.9.0</jmolecules.version>
         <jmolecules-integrations.version>1.6.0</jmolecules-integrations.version>
 		<dddbits.version>0.0.1</dddbits.version>
-		<spring.boot.version>3.1.5</spring.boot.version>
+		<spring.boot.version>3.2.4</spring.boot.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<gson.version>2.10.1</gson.version>
 
 		<!-- Libraries for test -->
-		<junit.jupiter.version>5.10.0</junit.jupiter.version>
-		<junit.platform.version>1.10.0</junit.platform.version>
-		<assertj.version>3.24.2</assertj.version>
-		<mockito.version>5.6.0</mockito.version>
-		<archunit.version>1.1.0</archunit.version>
+		<junit.jupiter.version>5.10.2</junit.jupiter.version>
+		<junit.platform.version>1.10.2</junit.platform.version>
+		<assertj.version>3.25.3</assertj.version>
+		<mockito.version>5.11.0</mockito.version>
+		<archunit.version>1.2.1</archunit.version>
 	</properties>
 
 	<modules>
