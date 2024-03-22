@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM eclipse-temurin:21
+FROM eclipse-temurin:22
 
 WORKDIR /app
 
