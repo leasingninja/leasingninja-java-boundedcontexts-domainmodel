@@ -19,7 +19,31 @@ class CustomerTest {
     }
 
     @Test
+    void givenAStringWithNonStandardLatinCharacter_whenIsValid_thenTrue() {
+        // given
+        var nameString = "Björn";
+
+        // when
+        boolean isValid = Customer.isValid(nameString);
+
+        // then
+        assertThat(isValid).isTrue();
+    }
+
+    @Test
     void givenAStringWithOnlyLettersAndSpace_whenIsValid_thenTrue() {
+        // given
+        var nameString = "John Buyer";
+
+        // when
+        boolean isValid = Customer.isValid(nameString);
+
+        // then
+        assertThat(isValid).isTrue();
+    }
+
+    @Test
+    void givenAStringWithNonStandardLatinCharacterAndSpace_whenIsValid_thenTrue() {
         // given
         var nameString = "John le Carré";
 

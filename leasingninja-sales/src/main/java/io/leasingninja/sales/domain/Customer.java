@@ -6,11 +6,12 @@ import org.jmolecules.ddd.annotation.ValueObject;
 public record Customer(String customer) {
 
 	public static Customer of(String customer) {
+        assert isValid(customer);
 		return new Customer(customer);
 	}
 
     public static boolean isValid(String nameString) {
-        return nameString.matches("/^\\p{L}+(\\s\\p{L}+)*$/");
+        return nameString.matches("^\\p{L}+(\\s\\p{L}+)*$");
     }
 
 }
