@@ -10,7 +10,7 @@ public record Customer(String customer) {
 	}
 
     public static boolean isValid(String nameString) {
-        return nameString.matches("/^(\\p{L}+\\s)*\\p{L}+$/");
+        return nameString.matches("/^\\p{L}+(\\s\\p{L}+)*$/");
     }
 
 }
