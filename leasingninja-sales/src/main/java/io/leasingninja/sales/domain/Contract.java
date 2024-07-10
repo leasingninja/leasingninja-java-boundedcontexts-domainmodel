@@ -94,8 +94,8 @@ public class Contract {
 
 	public void sign(SignDate date) {
 		requireNonNull(date);
-		assert !isSigned();
         assert isCalculated();
+		assert !isSigned();
 
 		this.signDate = Optional.of(date);
 
