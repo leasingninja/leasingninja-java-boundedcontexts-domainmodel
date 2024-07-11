@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import io.leasingninja.sales.application.ViewContract;
 import io.leasingninja.sales.domain.Amount;
 import io.leasingninja.sales.domain.Car;
 import io.leasingninja.sales.domain.Contract;
