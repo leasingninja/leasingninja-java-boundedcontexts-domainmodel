@@ -42,7 +42,7 @@ class ViewContractTest {
 
 		// Then
 		//TODO: Fix this!
-		assertThat(contract).isEqualToComparingFieldByField(
+		assertThat(contract).usingRecursiveComparison().isEqualTo(
 				new Contract(
 					ContractNumber.of("4711"),
 					Customer.of("Bob Smith"),
@@ -64,7 +64,7 @@ class ViewContractTest {
 //		VertragModel model = viewContractUnderTest.liesVertrag("4711");
 //
 //		// Then
-//		assertThat(model).isEqualToComparingFieldByField(new VertragModel("4711", "Hans Schmidt", "Mercedes Benz E-Klasse", 10_000, Currency.EUR));
+//		assertThat(model).usingRecursiveComparison().isEqualTo(new VertragModel("4711", "Hans Schmidt", "Mercedes Benz E-Klasse", 10_000, Currency.EUR));
 //	}
 
 }

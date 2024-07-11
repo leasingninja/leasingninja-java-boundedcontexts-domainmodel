@@ -29,7 +29,7 @@ class ContractsMemImplTest {
 		var contract = repoUnderTest.with(ContractNumber.of("4711"));
 
 		// then
-		assertThat(contract).isEqualToComparingFieldByField(
+		assertThat(contract).usingRecursiveComparison().isEqualTo(
 				new Contract(
 						ContractNumber.of("4711"),
 						Customer.of("John Buyer"),

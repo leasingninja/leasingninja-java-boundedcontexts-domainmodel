@@ -34,9 +34,9 @@ class ReadContractTest {
 
 		// when
 		var contract = serviceUnderTest.readContract(ContractNumber.of("4711"));
-		
+
 		// then
-		assertThat(contract).isEqualToComparingFieldByField(new Contract(
+		assertThat(contract).usingRecursiveComparison().isEqualTo(new Contract(
 				ContractNumber.of("4711"),
 				SignDate.of(2018, 4, 1)));
 	}
