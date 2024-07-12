@@ -58,4 +58,62 @@ class ContractTest {
 		// check that event ContractSigned is fired
 	}
 
+	@Test
+	void givenTwoContractsWithSameIdButDifferentFields_whenEquals_thenShouldReturnTrue() {
+		// given
+		var contract1 = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Mercedes Benz C-Class"),
+				Amount.of(40_000, Currency.EUR));
+        var contract2 = new Contract(ContractNumber.of("4711"),
+				Customer.of("Bob Myers"),
+				Car.of("Volkswagen ID.3"),
+				Amount.of(30_000, Currency.EUR));
+
+		// when
+		var equal = contract1.equals(contract2);
+
+		// then
+		assertThat(equal).isTrue();
+	}
+
+	@Test
+	void givenTwoContractsWithDifferentIdButSameFields_whenEquals_thenShouldReturnFalse() {
+		// given
+		var contract1 = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Mercedes Benz C-Class"),
+				Amount.of(40_000, Currency.EUR));
+        var contract2 = new Contract(ContractNumber.of("4712"),
+				Customer.of("John Buyer"),
+				Car.of("Mercedes Benz C-Class"),
+				Amount.of(40_000, Currency.EUR));
+
+		// when
+		var equal = contract1.equals(contract2);
+
+		// then
+		assertThat(equal).isFalse();
+	}
+
+	@Test
+	void givenTwoContractsWithSameId_whenHashcode_thenShouldBeEqual() {
+		// given
+		var contract1 = new Contract(ContractNumber.of("4711"),
+				Customer.of("John Buyer"),
+				Car.of("Mercedes Benz C-Class"),
+				Amount.of(40_000, Currency.EUR));
+        var contract2 = new Contract(ContractNumber.of("4711"),
+				Customer.of("Bob Myers"),
+				Car.of("Volkswagen ID.3"),
+				Amount.of(30_000, Currency.EUR));
+
+		// when
+		var hashcode1 = contract1.hashCode();
+		var hashcode2 = contract2.hashCode();
+
+		// then
+		assertThat(hashcode1).isEqualTo(hashcode2);
+	}
+
 }
