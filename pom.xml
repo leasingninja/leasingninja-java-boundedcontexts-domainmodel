@@ -19,7 +19,7 @@
 		<java.version>23</java.version>
 		<maven.compiler.version>3.13.0</maven.compiler.version>
 		<surefire.version>3.5.2</surefire.version>
-		<failsafe.version>3.5.1</failsafe.version>
+		<failsafe.version>3.5.2</failsafe.version>
 
 		<!-- Libraries -->
         <jmolecules.version>1.9.0</jmolecules.version>
