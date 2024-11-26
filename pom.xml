@@ -22,7 +22,7 @@
 		<failsafe.version>3.5.2</failsafe.version>
 
 		<!-- Libraries -->
-        <jmolecules.version>1.9.0</jmolecules.version>
+        <jmolecules.version>1.10.0</jmolecules.version>
         <jmolecules-integrations.version>1.6.0</jmolecules-integrations.version>
 		<dddbits.version>0.0.1</dddbits.version>
 		<spring.boot.version>3.3.5</spring.boot.version>
