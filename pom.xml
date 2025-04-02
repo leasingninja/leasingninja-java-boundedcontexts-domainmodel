@@ -76,6 +76,11 @@
 			<artifactId>jmolecules-ddd</artifactId>
 			<version>${jmolecules.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-events</artifactId>
+			<version>${jmolecules.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.jmolecules.integrations</groupId>
             <artifactId>jmolecules-archunit</artifactId>
