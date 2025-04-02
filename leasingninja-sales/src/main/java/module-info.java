@@ -16,6 +16,7 @@ module io.leasingninja.sales {
 
     // Domain Layer
     requires org.jmolecules.ddd;
+    requires org.jmolecules.events;
     requires io.leasingninja.riskmanagement;
 
     // Application Layer

@@ -1,6 +1,8 @@
 package io.leasingninja.sales.domain;
 
-//@DomainEvent
-public final class ContractSigned {
+import org.jmolecules.event.annotation.DomainEvent;
+
+@DomainEvent
+public final record ContractSigned(ContractNumber contract, SignDate signDate) {
 
 }

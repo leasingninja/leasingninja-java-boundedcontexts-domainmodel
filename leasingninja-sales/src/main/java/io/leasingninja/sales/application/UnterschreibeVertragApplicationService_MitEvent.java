@@ -1,5 +1,6 @@
 package io.leasingninja.sales.application;
 
+import java.time.LocalDate;
 //import java.beans.
 import java.util.concurrent.SubmissionPublisher;
 
@@ -19,7 +20,7 @@ public class UnterschreibeVertragApplicationService_MitEvent extends SubmissionP
 	public void unterschreibeVertrag(String vnr, String unterschriftsdatum) {
 		// TODO Auto-generated method stub
 
-		submit(new ContractSigned());
+		submit(new ContractSigned(ContractNumber.of(vnr), SignDate.of(LocalDate.parse(unterschriftsdatum))));
 	}
 
 }
