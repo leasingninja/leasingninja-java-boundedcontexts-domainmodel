@@ -32,7 +32,7 @@
 		<!-- Libraries for test -->
 		<junit.jupiter.version>5.13.4</junit.jupiter.version>
 		<junit.platform.version>1.10.3</junit.platform.version>
-		<assertj.version>3.27.4</assertj.version>
+		<assertj.version>3.27.6</assertj.version>
 		<mockito.version>5.19.0</mockito.version>
 		<archunit.version>1.4.1</archunit.version>
 	</properties>
