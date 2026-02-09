@@ -25,7 +25,7 @@
         <jmolecules.version>1.10.0</jmolecules.version>
         <jmolecules-integrations.version>1.6.0</jmolecules-integrations.version>
 		<dddbits.version>0.0.1</dddbits.version>
-		<spring.boot.version>3.5.5</spring.boot.version>
+		<spring.boot.version>3.5.6</spring.boot.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<gson.version>2.13.1</gson.version>
 
