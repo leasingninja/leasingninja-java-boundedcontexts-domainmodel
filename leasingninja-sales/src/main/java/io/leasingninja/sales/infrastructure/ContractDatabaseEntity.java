@@ -69,7 +69,7 @@ public class ContractDatabaseEntity {
 				ContractNumber.of(number),
 				Customer.of(lessee),
 				Car.of(car),
-				Amount.of(priceAmount, Currency.valueOf(priceCurrency)),
+				Amount.ofCents(priceAmount, Currency.valueOf(priceCurrency)),
 				leaseTermInMonths != 0
                     ? Optional.of(LeaseTerm.ofMonths(leaseTermInMonths))
                     : Optional.empty(),
