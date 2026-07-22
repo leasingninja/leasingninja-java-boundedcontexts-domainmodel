@@ -11,6 +11,7 @@ module io.leasingninja.sales {
 //	opens io.leasingninja.sales.infrastructure to io.leasingninja.webapp;
 
     // all layers
+    requires org.jspecify;
     requires org.slf4j;
     requires org.jmolecules.architecture.layered;
 

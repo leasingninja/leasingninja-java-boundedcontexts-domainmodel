@@ -22,6 +22,7 @@
 		<failsafe.version>3.5.4</failsafe.version>
 
 		<!-- Libraries -->
+		<jspecify.version>1.0.0</jspecify.version>
         <jmolecules.version>2.0.1</jmolecules.version>
         <jmolecules-integrations.version>1.6.0</jmolecules-integrations.version>
 		<dddbits.version>0.0.1</dddbits.version>
@@ -66,7 +67,13 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<dependency>
+        <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>${jspecify.version}</version>
+        </dependency>
+
+        <dependency>
 			<groupId>org.jmolecules</groupId>
 			<artifactId>jmolecules-layered-architecture</artifactId>
 			<version>${jmolecules.version}</version>

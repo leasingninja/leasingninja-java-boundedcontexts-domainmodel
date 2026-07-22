@@ -5,6 +5,7 @@
 module io.leasingninja.riskmanagement {
 	exports io.leasingninja.riskmanagement.application;
 
+	requires org.jspecify;
 	requires org.slf4j;
 
     requires org.jmolecules.architecture.layered;
