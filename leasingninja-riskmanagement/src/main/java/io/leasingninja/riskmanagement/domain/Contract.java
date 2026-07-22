@@ -1,5 +1,7 @@
 package io.leasingninja.riskmanagement.domain;
 
+import static java.util.Objects.requireNonNull;
+
 import org.jmolecules.ddd.annotation.Entity;
 import org.jmolecules.ddd.annotation.Identity;
 
@@ -14,16 +16,16 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 
 	public Contract(ContractNumber number, SignDate signDate) { // TODO: do we need the signDate?
 		super(number);
-        assert number != null;
-		assert signDate != null;
+        requireNonNull(number);
+		requireNonNull(signDate);
 
         this.number = number;
 	}
 
 	//TODO: @Factory
 	public static Contract restore(ContractNumber nr, SignDate signDate, CreditRating rating, VoteResult voteResult) {
-		assert nr != null;
-		assert signDate != null;
+		requireNonNull(nr);
+		requireNonNull(signDate);
 //		assert voteResult == null || rating != null    // VoteResult != null => rating != null
 
 		var restoredContract = new Contract(nr, signDate);
@@ -38,7 +40,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
     }
 
 	public void checkCreditRating(CreditRating creditRating) {
-		assert creditRating != null;
+		requireNonNull(creditRating);
 		assert !isVoted();
 
 		this.creditRating = creditRating;
@@ -57,7 +59,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	public void vote(VoteResult result) {
-		assert result != null;
+		requireNonNull(result);
 		assert isRated(); // TODO: Decide DbC-Mechanism
 
 		this.voteResult = result;
