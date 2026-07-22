@@ -34,7 +34,7 @@ public class ContractsJsonImpl implements Contracts  {
 	@Override
 	public Contract with(ContractNumber number) {
 		// TODO hier weitermachen mit: https://vaughnvernon.co/?p=942
-		return null;
+		throw new UnsupportedOperationException("ContractsJsonImpl.with() is not implemented yet");
 	}
 
 }
