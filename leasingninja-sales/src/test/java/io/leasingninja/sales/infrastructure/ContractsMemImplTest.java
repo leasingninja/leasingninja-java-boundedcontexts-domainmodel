@@ -13,12 +13,10 @@ import io.leasingninja.sales.domain.Customer;
 
 class ContractsMemImplTest {
 
-	private ContractsMemImpl repoUnderTest;
-
 	@Test
 	void test() {
 		// given
-		repoUnderTest = new ContractsMemImpl();
+		var repoUnderTest = new ContractsMemImpl();
 
 		// when
 		repoUnderTest.save(new Contract(
