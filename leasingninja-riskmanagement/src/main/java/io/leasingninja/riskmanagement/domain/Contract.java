@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import org.jmolecules.ddd.annotation.Entity;
 import org.jmolecules.ddd.annotation.Identity;
+import org.jspecify.annotations.Nullable;
 
 @Entity
 public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNumber>  {
@@ -11,8 +12,8 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
     @Identity
     private final ContractNumber number;
 
-	private CreditRating creditRating;
-	private VoteResult voteResult;
+	private @Nullable CreditRating creditRating;
+	private @Nullable VoteResult voteResult;
 
 	public Contract(ContractNumber number, SignDate signDate) { // TODO: do we need the signDate?
 		super(number);
@@ -23,7 +24,7 @@ public class Contract extends io.hschwentner.dddbits.basetype.Entity<ContractNum
 	}
 
 	//TODO: @Factory
-	public static Contract restore(ContractNumber nr, SignDate signDate, CreditRating rating, VoteResult voteResult) {
+	public static Contract restore(ContractNumber nr, SignDate signDate, @Nullable CreditRating rating, @Nullable VoteResult voteResult) {
 		requireNonNull(nr);
 		requireNonNull(signDate);
 //		assert voteResult == null || rating != null    // VoteResult != null => rating != null

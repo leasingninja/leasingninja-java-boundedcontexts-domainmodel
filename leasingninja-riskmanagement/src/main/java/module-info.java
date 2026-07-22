@@ -1,7 +1,10 @@
+import org.jspecify.annotations.NullMarked;
+
 /**
  * @author Henning Schwentner
  *
  */
+@NullMarked
 module io.leasingninja.riskmanagement {
 	exports io.leasingninja.riskmanagement.application;
 

@@ -1,10 +1,12 @@
 //import io.hschwentner.dddbits.annotation.BoundedContext;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * @author Henning Schwentner
  *
  */
 //@BoundedContext TODO: comment in again when DDDBITS support Java 9
+@NullMarked
 module io.leasingninja.sales {
 //    exports io.leasingninja.sales.infrastructure; // for jpa
 //    opens io.leasingninja.sales.infrastructure to spring.data.jpa; // for jpa
