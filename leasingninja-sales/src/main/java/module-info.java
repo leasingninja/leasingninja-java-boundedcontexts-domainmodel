@@ -46,9 +46,3 @@ module io.leasingninja.sales {
 //    requires transitive com.fasterxml.jackson.core;
     requires com.google.gson;
 }
-
-
-//	exports * to de.wps.leasingninja.vertriebtest
-
-//	requires org.junit.jupiter.api;
-//	requires org.assertj;

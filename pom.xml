@@ -130,11 +130,6 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.mapstruct</groupId> -->
-<!-- 			<artifactId>mapstruct-processor</artifactId> -->
-<!-- 			<version>${mapstruct.version}</version> -->
-<!-- 		</dependency> -->
 
 		<!-- Gson: Java to Json conversion -->
 		<dependency>
@@ -240,25 +235,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${surefire.version}</version>
-				<!--
-				 Idea from https://sormuras.github.io/blog/2018-09-11-testing-in-the-modular-world#in-module-testing-with-module-infojava
-				<configuration>
-					<argLine>
-						- -patch-module io.leasingninja.sales=src/main/java
-						- -patch-module io.leasingninja.riskmanagement=src/main/java
-					</argLine>
-				</configuration>
-				-->
-
-				<!--
-				<configuration>
-					<argLine>
-                        - -illegal-access=permit
-                    </argLine>
-					<useSystemClassLoader>true</useSystemClassLoader>
-					<useManifestOnlyJar>false</useManifestOnlyJar>
-				</configuration>
-				 -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

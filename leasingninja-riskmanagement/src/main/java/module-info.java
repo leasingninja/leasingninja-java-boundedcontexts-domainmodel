@@ -23,11 +23,3 @@ module io.leasingninja.riskmanagement {
 //	requires spring.boot;
 //	requires spring.boot.autoconfigure;
 }
-
-
-
-
-
-
-//requires org.junit.jupiter.api;
-// eine Sache, damit man das auch mit Eclipse nicht braucht: JUnit in Classpath statt in Modulepath.
