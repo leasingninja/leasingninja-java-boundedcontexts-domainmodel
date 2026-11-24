@@ -11,6 +11,7 @@ open module io.leasingninja.webapp {
 //	requires io.hschwentner.dddbits;
 	requires spring.boot;
 	requires spring.boot.autoconfigure;
+	requires spring.boot.persistence;
 	requires spring.context;
 	requires spring.data.commons;
 	requires spring.data.jpa;

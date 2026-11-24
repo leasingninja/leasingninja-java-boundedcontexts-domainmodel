@@ -9,19 +9,9 @@ We start with the central entity _Contract_.
 
 ## Build Instructions
 
-For the time being we’re wrestling with the module system, so we have to play some tricks. It is either:
-
-* build with Maven without tests:
-
-    ```fish
-    ./mvnw package -Dmaven.test.skip=true
-    ```
-
-* build with Maven without Jigsaw
-
-    ```fish
-    bin/enable-jigsaw.sh disable && ./mvnw test && bin/enable-jigsaw.sh enable
-    ```
+```fish
+./mvnw test
+```
 
 ## Run with Docker
 
@@ -38,7 +28,7 @@ Open <http://localhost:8080> in your browser.
 Install LeasingNinja to your Maven repository:
 
 ```fish
-bin/enable-jigsaw.sh disable && ./mvnw install && bin/enable-jigsaw.sh enable
+./mvnw install
 ```
 
 Start the web app:

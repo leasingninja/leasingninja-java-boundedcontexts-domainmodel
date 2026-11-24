@@ -1,16 +1,19 @@
 //import io.hschwentner.dddbits.annotation.BoundedContext;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * @author Henning Schwentner
  *
  */
 //@BoundedContext TODO: comment in again when DDDBITS support Java 9
+@NullMarked
 module io.leasingninja.sales {
 //    exports io.leasingninja.sales.infrastructure; // for jpa
 //    opens io.leasingninja.sales.infrastructure to spring.data.jpa; // for jpa
 //	opens io.leasingninja.sales.infrastructure to io.leasingninja.webapp;
 
     // all layers
+    requires org.jspecify;
     requires org.slf4j;
     requires org.jmolecules.architecture.layered;
 
@@ -43,9 +46,3 @@ module io.leasingninja.sales {
 //    requires transitive com.fasterxml.jackson.core;
     requires com.google.gson;
 }
-
-
-//	exports * to de.wps.leasingninja.vertriebtest
-
-//	requires org.junit.jupiter.api;
-//	requires org.assertj;
