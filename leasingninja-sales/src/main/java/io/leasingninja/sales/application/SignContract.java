@@ -1,5 +1,7 @@
 package io.leasingninja.sales.application;
 
+import static java.util.Objects.requireNonNull;
+
 import io.hschwentner.dddbits.annotation.ApplicationService;
 import io.leasingninja.riskmanagement.application.InboxApplicationService;
 import io.leasingninja.sales.domain.ContractNumber;
@@ -18,8 +20,8 @@ public class SignContract {
 	}
 
 	public void with(ContractNumber number, SignDate signDate) {
-		assert number != null;
-		assert signDate != null;
+		requireNonNull(number);
+		requireNonNull(signDate);
 
 		var contract = this.contracts.with(number);
 
