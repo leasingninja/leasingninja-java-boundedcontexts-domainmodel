@@ -13,7 +13,8 @@ public class FinancialCalculator {
      * @param iInPercent percentage interest rate per period
      * @param pv present value
      * @param fv future value
-     * @param s
+     * @param s annuity timing: 0 = ordinary annuity (payment in arrears), 1 = annuity due
+     *          (payment in advance); fractional values interpolate between the two
      * @return payment per period
      */
 	public static double pmt(double n, double iInPercent, double pv, double fv, double s) {
@@ -27,7 +28,8 @@ public class FinancialCalculator {
      * @param i decimal interest rate per period
      * @param pv present value
      * @param fv future value
-     * @param s
+     * @param s annuity timing: 0 = ordinary annuity (payment in arrears), 1 = annuity due
+     *          (payment in advance); fractional values interpolate between the two
      * @return payment per period
      */
     private static double pmtWithDecimalInterestRate(double n, double i, double pv, double fv, double s) {

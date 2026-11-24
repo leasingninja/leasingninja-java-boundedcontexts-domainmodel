@@ -1,16 +1,18 @@
 package io.leasingninja.riskmanagement.userinterface;
 
+import org.jspecify.annotations.Nullable;
+
 class ContractModel {
 
 	public String number;
-	public Integer creditRating;
+	public @Nullable Integer creditRating;
 	public String voteResult;
 
 	public ContractModel() {
 		this("", null, "");
 	}
 
-	public ContractModel(String number, Integer creditRating, String voteResult) {
+	public ContractModel(String number, @Nullable Integer creditRating, String voteResult) {
 		this.number = number;
 		this.creditRating = creditRating;
 		this.voteResult = voteResult;
@@ -33,11 +35,11 @@ class ContractModel {
 		this.number = number;
 	}
 
-	public Integer getCreditRating() {
+	public @Nullable Integer getCreditRating() {
 		return creditRating;
 	}
 
-	public void setCreditRating(Integer creditRating) {
+	public void setCreditRating(@Nullable Integer creditRating) {
 		this.creditRating = creditRating;
 	}
 

@@ -4,22 +4,17 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '25'
           cache: maven
-      - name: Build with Maven without tests
+      - name: Build with Maven
         run:
-          ./mvnw --batch-mode --update-snapshots package -Dmaven.test.skip=true
-      - name: Build with Maven without Jigsaw
-        run: |
-          bin/enable-jigsaw.sh disable
           ./mvnw --batch-mode --update-snapshots package
-          bin/enable-jigsaw.sh enable
