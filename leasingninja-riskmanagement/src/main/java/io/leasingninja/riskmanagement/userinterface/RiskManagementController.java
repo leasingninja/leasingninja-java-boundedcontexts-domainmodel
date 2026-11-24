@@ -47,7 +47,7 @@ public class RiskManagementController {
 		model.addAttribute(
 				"contracts",
 				contractModels);
-		return "contracts";
+		return "riskmanagement/contracts";
 	}
 	
 	// Todo: really needed?
@@ -69,7 +69,7 @@ public class RiskManagementController {
 		model.addAttribute("contract", vertragModel);
 		model.addAttribute("editing_disabled", contract.isVoted());
 
-		return "contract";
+		return "riskmanagement/contract";
 	}
 
 	@GetMapping("/riskmanagement/rating")
@@ -86,7 +86,7 @@ public class RiskManagementController {
 		model.addAttribute("contract", contractModel);
 		model.addAttribute("editing_disabled", contract.isVoted());
 
-		return "rating";
+		return "riskmanagement/rating";
 	}
 
 	@PostMapping("/riskmanagement/rate_contract")

@@ -67,7 +67,7 @@ public class SalesController {
 			model.addAttribute("editing_disabled", contract.isSigned());
 			logger.trace("editing_disabled: " + contract.isSigned());
 		}
-		return "contractView";
+		return "sales/contractView";
 	}
 
 //	@GetMapping("/sales/view_contract")
