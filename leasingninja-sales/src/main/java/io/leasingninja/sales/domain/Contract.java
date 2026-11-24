@@ -2,10 +2,9 @@ package io.leasingninja.sales.domain;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Optional;
-
 import org.jmolecules.ddd.annotation.Entity;
 import org.jmolecules.ddd.annotation.Identity;
+import org.jspecify.annotations.Nullable;
 
 @Entity
 public class Contract {
@@ -18,9 +17,9 @@ public class Contract {
 	private final Amount price;
 
 	private record Calculation(LeaseTerm leaseTerm, Interest interest, Amount installment) {}
-    private Optional<Calculation> calculation;
+    private @Nullable Calculation calculation;
 
-    private Optional<SignDate> signDate;
+    private @Nullable SignDate signDate;
 
 	public Contract(ContractNumber number, Customer lessee, Car car, Amount price) {
         requireNonNull(number);
@@ -32,8 +31,8 @@ public class Contract {
 		this.lessee = lessee;
 		this.car = car;
 		this.price = price;
-		this.calculation = Optional.empty();
-		this.signDate = Optional.empty();
+		this.calculation = null;
+		this.signDate = null;
 	}
 
 	@Identity
@@ -54,7 +53,7 @@ public class Contract {
 	}
 
 	public boolean isCalculated() {
-		return this.calculation.isPresent();
+		return this.calculation != null;
 	}
 
 	public void calculateInstallmentFor(LeaseTerm leaseTerm, Interest interest) {
@@ -72,24 +71,24 @@ public class Contract {
 			residualValue,
 			inAdvance);
 
-		this.calculation = Optional.of(new Calculation(leaseTerm, interest, Amount.of(pmt, price.currency())));
+		this.calculation = new Calculation(leaseTerm, interest, Amount.of(pmt, price.currency()));
 
 		assert isCalculated();
 	}
 
     public LeaseTerm leaseTerm() {
     	assert isCalculated();
-	    return this.calculation.get().leaseTerm();
+	    return this.calculation.leaseTerm();
     }
 
     public Interest interest() {
     	assert isCalculated();
-	    return this.calculation.get().interest();
+	    return this.calculation.interest();
     }
 
 	public Amount installment() {
 		assert isCalculated();
-		return this.calculation.get().installment();
+		return this.calculation.installment();
 	}
 
 	public void sign(SignDate date) {
@@ -97,18 +96,18 @@ public class Contract {
         assert isCalculated();
 		assert !isSigned();
 
-		this.signDate = Optional.of(date);
+		this.signDate = date;
 
 		assert isSigned();
 	}
 
 	public boolean isSigned() {
-		return this.signDate.isPresent();
+		return this.signDate != null;
 	}
 
 	public SignDate signDate() {
 		assert isSigned();
-		return this.signDate.get();
+		return this.signDate;
 	}
 
 	@Override
